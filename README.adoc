@@ -1,0 +1,15 @@
+= workspace
+
+Vagrantで仮想マシン環境を構築する。
+
+== 検証環境
+
+Ubuntu19.04
+
+== Vagrantを使えるようにする手順
+
+* https://www.virtualbox.org/wiki/Linux_Downloads[VirtualBox]のインストール
+** 6.0.8をインストールした
+* https://www.vagrantup.com/[Vagrant]のインストール
+** 2.2.4をインストールした (debian 64-bit)
+
