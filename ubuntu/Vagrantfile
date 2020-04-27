@@ -44,7 +44,6 @@ Vagrant.configure("2") do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   config.vm.synced_folder "C:\\Users\\jiro4989\\.ssh", "/home/vagrant/.host.ssh"
-  config.vm.synced_folder "C:\\Users\\jiro4989\\.netrc", "/home/vagrant/.netrc"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -93,11 +92,9 @@ Vagrant.configure("2") do |config|
 
     cat << EOS > /tmp/init_vagrant_user.sh
 
-    # Neovim
+    # Vim
     curl -sSf https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > /tmp/install_dein.sh
     bash /tmp/install_dein.sh ~/.cache/dein
-    curl -sSfL https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage > /tmp/nvim
-    install -o root -g root -m 0755 /tmp/nvim /usr/local/bin/nvim
 
     # Git
     git config --global user.email jiroron666@gmail.com
@@ -118,6 +115,10 @@ Vagrant.configure("2") do |config|
     fish <<< fisher add edc/bass
 
 EOS
+
+    # Neovim
+    curl -sSfL https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage > /usr/local/bin/nvim
+    chmod 0755 /usr/local/bin/nvim
 
     chmod +x /tmp/init_vagrant_user.sh
     sudo -u vagrant -i /tmp/init_vagrant_user.sh
@@ -143,4 +144,6 @@ EOS
     unzip /tmp/ghq_linux_amd64.zip
     install -m 0755 ghq_linux_amd64/ghq /usr/local/bin/ghq
   SHELL
+
+  config.vm.provision "file", source: "~/.netrc", destination: ".netrc"
 end
