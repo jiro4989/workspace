@@ -72,7 +72,7 @@ Vagrant.configure("2") do |config|
       vim \
       git \
       curl \
-      zsh \
+      fish \
       tmux \
       wget \
       build-essential \
@@ -107,6 +107,9 @@ Vagrant.configure("2") do |config|
     pushd dotfiles
     ./script/deploy.sh
 
+    curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
+    fish <<< fisher add edc/bass
+
 EOS
 
     chmod +x /tmp/init_vagrant_user.sh
@@ -117,7 +120,10 @@ EOS
     usermod -a -G docker vagrant
 
     # change shell
-    chsh -s /usr/bin/zsh vagrant
+    chsh -s $(which fish) vagrant
+
+    # fish
+    curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
 
     # ssh
     install -o vagrant -g vagrant -m 0600 /home/vagrant/.host.ssh/jiro4989 /home/vagrant/.ssh/jiro4989
