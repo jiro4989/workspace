@@ -43,7 +43,7 @@ Vagrant.configure("2") do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  config.vm.synced_folder "C:\\Users\\jiro4989\\.ssh", "/home/vagrant/.ssh"
+  config.vm.synced_folder "C:\\Users\\jiro4989\\.ssh", "/home/vagrant/.host.ssh"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -67,11 +67,13 @@ Vagrant.configure("2") do |config|
     add-apt-repository -y ppa:lazygit-team/release
     add-apt-repository -y ppa:git-core/ppa
 
-    apt-get update -y
+    apt-get update -yqq
     apt-get install -y \
       vim \
       git \
       curl \
+      zsh \
+      tmux \
       wget \
       build-essential \
       ca-certificates \
@@ -80,7 +82,7 @@ Vagrant.configure("2") do |config|
       ;
 
     # docker-compoes
-    curl -L "https://github.com/docker/compose/releases/download/1.25.4/docker-compose-$(uname -s)-$(uname -m)" -o /tmp/docker-compose
+    curl -sL "https://github.com/docker/compose/releases/download/1.25.4/docker-compose-$(uname -s)-$(uname -m)" -o /tmp/docker-compose
     install -o root -g root -m 0755 /tmp/docker-compose /usr/local/bin/docker-compose
 
     # Neovim
@@ -89,8 +91,7 @@ Vagrant.configure("2") do |config|
     curl -sSfL https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage > /tmp/nvim
     install -o root -g root -m 0755 /tmp/nvim /usr/local/bin/nvim
 
-    su - vagrant
-    export HOME=/home/vagrant
+    cat << EOS > /tmp/init_vagrant_user.sh
 
     # Git
     git config --global user.email jiroron666@gmail.com
@@ -101,14 +102,25 @@ Vagrant.configure("2") do |config|
 
     # Nim
     curl https://nim-lang.org/choosenim/init.sh -sSf > /tmp/init.sh
-    sh /tmp/init.sh -y
+    sh /tmp/init.sh -y >/dev/null 2>&1
 
     git clone https://github.com/jiro4989/dotfiles
     pushd dotfiles
     ./script/deploy.sh
 
+EOS
+
+    sudo -u vagrant -i /tmp/init_vagrant_user.sh
+
     # docker
     groupadd docker
     usermod -a -G docker vagrant
+
+    # change shell
+    chsh -s /usr/bin/zsh vagrant
+
+    # ssh
+    install -o vagrant -g vagrant -m 0600 /home/vagrant/.host.ssh/jiro4989 /home/vagrant/.ssh/jiro4989
+    install -o vagrant -g vagrant -m 0600 /home/vagrant/.host.ssh/config /home/vagrant/.ssh/config
   SHELL
 end
