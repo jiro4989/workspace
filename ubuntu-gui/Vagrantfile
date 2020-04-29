@@ -1,0 +1,183 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# All Vagrant configuration is done below. The "2" in Vagrant.configure
+# configures the configuration version (we support older styles for
+# backwards compatibility). Please don't change it unless you know what
+# you're doing.
+Vagrant.configure("2") do |config|
+  # The most common configuration options are documented and commented below.
+  # For a complete reference, please see the online documentation at
+  # https://docs.vagrantup.com.
+
+  # Every Vagrant development environment requires a box. You can search for
+  # boxes at https://vagrantcloud.com/search.
+  config.vm.box = "bento/ubuntu-18.04"
+
+  # Disable automatic box update checking. If you disable this, then
+  # boxes will only be checked for updates when the user runs
+  # `vagrant box outdated`. This is not recommended.
+  # config.vm.box_check_update = false
+
+  # Create a forwarded port mapping which allows access to a specific port
+  # within the machine from a port on the host machine. In the example below,
+  # accessing "localhost:8080" will access port 80 on the guest machine.
+  # NOTE: This will enable public access to the opened port
+  # config.vm.network "forwarded_port", guest: 80, host: 8080
+
+  # Create a forwarded port mapping which allows access to a specific port
+  # within the machine from a port on the host machine and only allow access
+  # via 127.0.0.1 to disable public access
+  # config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
+
+  # Create a private network, which allows host-only access to the machine
+  # using a specific IP.
+  # config.vm.network "private_network", ip: "192.168.33.10"
+
+  # Create a public network, which generally matched to bridged network.
+  # Bridged networks make the machine appear as another physical device on
+  # your network.
+  # config.vm.network "public_network"
+
+  # Share an additional folder to the guest VM. The first argument is
+  # the path on the host to the actual folder. The second argument is
+  # the path on the guest to mount the folder. And the optional third
+  # argument is a set of non-required options.
+  config.vm.synced_folder "C:\\Users\\jiro4989\\.ssh", "/home/vagrant/.host.ssh"
+
+  # Provider-specific configuration so you can fine-tune various
+  # backing providers for Vagrant. These expose provider-specific options.
+  # Example for VirtualBox:
+  #
+  config.vm.provider "virtualbox" do |vb|
+    vb.gui = true
+    vb.memory = "8192" # RAMを使える量を変更
+    # cpu の数
+    vb.cpus = 4
+    vb.customize [
+      "modifyvm", :id,
+      "--vram", "256", # ビデオメモリ確保（フルスクリーンモードにするため
+      "--clipboard", "bidirectional", # クリップボードの共有
+      "--accelerate3d", "on",
+      "--hwvirtex", "on",
+      "--nestedpaging", "on",
+      "--largepages", "on",
+      "--ioapic", "on",
+      "--pae", "on",
+      "--paravirtprovider", "kvm",
+    ]
+  end
+
+  #
+  # View the documentation for the provider you are using for more
+  # information on available options.
+
+  # Enable provisioning with a shell script. Additional provisioners such as
+  # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
+  # documentation for more information about their specific syntax and use.
+  config.vm.provision "shell", inline: <<-SHELL
+    add-apt-repository -y ppa:lazygit-team/release
+    add-apt-repository -y ppa:cwchien/gradle
+
+    apt-get update -yqq
+    apt-get install -y \
+      build-essential \
+      ca-certificates \
+      ctags \
+      curl \
+      docker.io \
+      fish \
+      git \
+      gradle \
+      lazygit \
+      openjdk-11-jdk \
+      peco \
+      python3 \
+      python3-pip \
+      tmux \
+      unzip \
+      vim \
+      wget \
+      ;
+
+    # GUI環境の構築
+    apt-get install -y ubuntu-desktop
+
+    add-apt-repository -y ppa:git-core/ppa
+    apt-get install -y git
+
+    # docker-compoes
+    curl -sL "https://github.com/docker/compose/releases/download/1.25.4/docker-compose-$(uname -s)-$(uname -m)" -o /tmp/docker-compose
+    install -o root -g root -m 0755 /tmp/docker-compose /usr/local/bin/docker-compose
+
+
+    cat << EOS > /tmp/init_vagrant_user.sh
+
+    # Vim
+    curl -sSf https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > /tmp/install_dein.sh
+    bash /tmp/install_dein.sh ~/.cache/dein
+
+    # Git
+    git config --global user.email jiroron666@gmail.com
+    git config --global user.name jiro4989
+    git config --global ghq.root ~/src
+    git config --global alias.preq pull-request
+    git config --global alias.see browse
+
+    # Nim
+    curl https://nim-lang.org/choosenim/init.sh -sSf > /tmp/init.sh
+    sh /tmp/init.sh -y >/dev/null 2>&1
+
+    git clone https://github.com/jiro4989/dotfiles
+    pushd dotfiles
+    ./script/deploy.sh
+
+    curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
+    fish <<< fisher add edc/bass
+    fish <<< fisher add oh-my-fish/clearance
+    fish <<< fisher add fisherman/z
+    fish <<< fisher add fisher oshiori/fish-peco_select_ghq_repository
+
+EOS
+
+    # Neovim
+    curl -sSfL https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage > /usr/local/bin/nvim
+    chmod 0755 /usr/local/bin/nvim
+
+    chmod +x /tmp/init_vagrant_user.sh
+    sudo -u vagrant -i /tmp/init_vagrant_user.sh
+
+    # docker
+    groupadd docker
+    usermod -a -G docker vagrant
+
+    # change shell
+    chsh -s $(which tmux) vagrant
+
+    # fish
+    curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
+
+    # ssh
+    for f in id_rsa id_rsa.pub jiro4989 jiro4989.pub config; do
+      install -o vagrant -g vagrant -m 0600 /home/vagrant/.host.ssh/$f /home/vagrant/.ssh/$f
+    done
+
+    # ghq
+    curl -sSL https://github.com/x-motemen/ghq/releases/download/v1.1.0/ghq_linux_amd64.zip > /tmp/ghq_linux_amd64.zip
+    pushd /tmp
+    unzip /tmp/ghq_linux_amd64.zip
+    install -m 0755 ghq_linux_amd64/ghq /usr/local/bin/ghq
+
+    # shfmt
+    curl -sSfL https://github.com/mvdan/sh/releases/download/v3.0.1/shfmt_v3.0.1_linux_amd64 > /usr/local/bin/shfmt
+    chmod +x /usr/local/bin/shfmt
+
+    # kotlin-language-server
+    curl -o /usr/local/src/server.zip -sSL https://github.com/fwcd/kotlin-language-server/releases/download/0.5.2/server.zip
+    (cd /usr/local/src && unzip server.zip)
+    ln -sfn /usr/local/src/server/bin/kotlin-language-server /usr/local/bin/kotlin-language-server
+
+  SHELL
+
+  config.vm.provision "file", source: "~/.netrc", destination: ".netrc"
+end
