@@ -84,6 +84,7 @@ Vagrant.configure("2") do |config|
       peco \
       unzip \
       ctags \
+      openjdk-11-jdk \
       ;
 
     # docker-compoes
@@ -151,6 +152,11 @@ EOS
     # shfmt
     curl -sSfL https://github.com/mvdan/sh/releases/download/v3.0.1/shfmt_v3.0.1_linux_amd64 > /usr/local/bin/shfmt
     chmod +x /usr/local/bin/shfmt
+
+    # kotlin-language-server
+    curl -o /usr/local/src/server.zip -sSL https://github.com/fwcd/kotlin-language-server/releases/download/0.5.2/server.zip
+    (cd /usr/local/src && unzip server.zip)
+    ln -sfn /usr/local/src/server/bin/kotlin-language-server /usr/local/bin/kotlin-language-server
 
   SHELL
 
