@@ -119,7 +119,7 @@ Vagrant.configure("2") do |config|
 
     curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
     fish <<< fisher add edc/bass
-    fish <<< fisher add oh-my-fish/theme-bobthefish
+    fish <<< fisher add oh-my-fish/clearance
     fish <<< fisher add fisherman/z
     fish <<< fisher add fisher oshiori/fish-peco_select_ghq_repository
 
