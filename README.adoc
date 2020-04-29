@@ -1,10 +1,13 @@
 = workspace
+:toc: left
+:sectnums:
 
 Vagrantで仮想マシン環境を構築する。
 
 == 検証環境
 
-Ubuntu19.04
+* Ubuntu19.04
+* Windows 10 home
 
 == Vagrantを使えるようにする手順
 
@@ -13,3 +16,14 @@ Ubuntu19.04
 * https://www.vagrantup.com/[Vagrant]のインストール
 ** 2.2.4をインストールした (debian 64-bit)
 
+== 使い方
+
+以下のコマンドを入力する。
+
+[source,bash]
+----
+cd ubuntu
+vagrant init
+vagrant up
+vagrant ssh
+----
