@@ -2,11 +2,15 @@
 :toc: left
 :sectnums:
 
-Vagrantで仮想マシン環境を構築する。
+Vagrantでいつでも捨てて再構築できる開発環境を構築する。
+Infrastructure as Codeするなら自分用の開発環境だってコード化したい。
+やらかしたって `vagrant destroy && vagrant up` でまたやり直せる。
+もう `rm -rf --no-preserve-root` だって怖くない。
+（マウントしてるホストのファイルは死ぬ）
 
 == 検証環境
 
-* Ubuntu19.04
+* Ubuntu 19.04
 * Windows 10 home
 
 == Vagrantを使えるようにする手順
