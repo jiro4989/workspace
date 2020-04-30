@@ -5,7 +5,7 @@
 Vagrantでいつでも捨てて再構築できる開発環境を構築する。
 Infrastructure as Codeするなら自分用の開発環境だってコード化したい。
 やらかしたって `vagrant destroy && vagrant up` でまたやり直せる。
-もう `rm -rf --no-preserve-root` だって怖くない。
+もう `rm -rf` だって怖くない。
 （マウントしてるホストのファイルは死ぬ）
 
 == 検証環境
