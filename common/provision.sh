@@ -55,9 +55,9 @@ pushd dotfiles
 ./script/deploy.sh
 
 curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
-fish <<< fisher add edc/bass
-fish <<< fisher add oh-my-fish/theme-clearance
-fish <<< fisher add fisherman/z
+fish -c "fisher add edc/bass
+fish -c "fisher add oh-my-fish/theme-clearance
+fish -c "fisher add fisherman/z
 
 EOS
 
@@ -69,7 +69,6 @@ chmod +x /tmp/init_vagrant_user.sh
 sudo -u vagrant -i /tmp/init_vagrant_user.sh
 
 # docker
-groupadd docker
 usermod -a -G docker vagrant
 
 # change shell
