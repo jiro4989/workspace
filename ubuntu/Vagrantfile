@@ -69,5 +69,15 @@ Vagrant.configure("2") do |config|
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
     bash /tmp/provision.sh
+
+    jdtls_root=/opt/jdtls
+    jdtls_dir=$jdt_root/jdtls-0.54.0
+
+    mkdir -p $jdtls_dir
+    curl -o $jdtls_dir/jdt.tar.gz /tmp/ -sSL http://download.eclipse.org/jdtls/milestones/0.54.0/jdt-language-server-0.54.0-202004152304.tar.gz
+    pushd $jdtls_dir
+    tar xzf jdt.tar.gz
+    ln -sfn $jdtls_dir $jdt_root/current
+    popd
   SHELL
 end
