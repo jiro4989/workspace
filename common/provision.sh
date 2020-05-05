@@ -52,7 +52,7 @@ sh /tmp/init.sh -y >/dev/null 2>&1
 # dotfiles
 git clone https://github.com/jiro4989/dotfiles
 pushd dotfiles
-./script/deploy.sh
+./setup.sh
 
 curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
 fish -c "fisher add edc/bass"
