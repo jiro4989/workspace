@@ -47,7 +47,6 @@ Vagrant.configure("2") do |config|
   # argument is a set of non-required options.
   config.vm.synced_folder "C:\\Users\\jiro4989\\.ssh", "/home/vagrant/.host.ssh"
   config.vm.provision "file", source: "~/.netrc", destination: ".netrc"
-  config.vm.provision "file", source: "../common/provision.sh", destination: "/tmp/provision.sh"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -67,17 +66,5 @@ Vagrant.configure("2") do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
-  config.vm.provision "shell", inline: <<-SHELL
-    bash /tmp/provision.sh
-
-    jdtls_root=/opt/jdtls
-    jdtls_dir=$jdt_root/jdtls-0.54.0
-
-    mkdir -p $jdtls_dir
-    curl -o $jdtls_dir/jdt.tar.gz /tmp/ -sSL http://download.eclipse.org/jdtls/milestones/0.54.0/jdt-language-server-0.54.0-202004152304.tar.gz
-    pushd $jdtls_dir
-    tar xzf jdt.tar.gz
-    ln -sfn $jdtls_dir $jdt_root/current
-    popd
-  SHELL
+  config.vm.provision "shell", path: "../common/init.sh"
 end
