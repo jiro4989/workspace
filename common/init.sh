@@ -37,6 +37,7 @@ cat << EOS > /tmp/init_vagrant_user.sh
 # Vim
 curl -sSf https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > /tmp/install_dein.sh
 bash /tmp/install_dein.sh ~/.cache/dein
+pip3 install --user pynvim
 
 # Git
 git config --global user.email jiroron666@gmail.com
