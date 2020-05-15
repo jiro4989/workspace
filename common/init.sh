@@ -23,6 +23,8 @@ apt-get install -y \
   unzip \
   vim \
   wget \
+  xsel \
+  xvfb \
   ;
 
 add-apt-repository -y ppa:git-core/ppa
