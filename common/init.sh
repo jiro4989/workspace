@@ -94,3 +94,8 @@ install -m 0755 ghq_linux_amd64/ghq /usr/local/bin/ghq
 # shfmt
 curl -sSfL https://github.com/mvdan/sh/releases/download/v3.0.1/shfmt_v3.0.1_linux_amd64 > /usr/local/bin/shfmt
 chmod +x /usr/local/bin/shfmt
+
+# bazel
+curl https://bazel.build/bazel-release.pub.gpg | sudo apt-key add -
+echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | tee /etc/apt/sources.list.d/bazel.list
+apt update -yqq && apt install -y bazel
