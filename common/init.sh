@@ -62,6 +62,8 @@ fish -c "fisher add edc/bass"
 fish -c "fisher add oh-my-fish/theme-clearance"
 fish -c "fisher add fisherman/z"
 
+pip3 install --user virtualenv
+
 EOS
 
 # Neovim
