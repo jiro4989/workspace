@@ -76,7 +76,8 @@ repos=(
   jiro4989/at_coder_note
 )
 for r in \${repos[@]}; do
-  ghq get -p "\$r"
+  # ghw getできない
+  : ghq get -p "\$r"
 done
 
 EOS
@@ -84,18 +85,6 @@ EOS
 # Neovim
 curl -sSfL https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage > /usr/local/bin/nvim
 chmod 0755 /usr/local/bin/nvim
-
-chmod +x /tmp/init_vagrant_user.sh
-sudo -u vagrant -i /tmp/init_vagrant_user.sh
-
-# docker
-usermod -a -G docker vagrant
-
-# change shell
-chsh -s $(which tmux) vagrant
-
-# fish
-curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
 
 # ssh
 for f in id_rsa id_rsa.pub jiro4989 jiro4989.pub config; do
@@ -111,6 +100,19 @@ install -m 0755 ghq_linux_amd64/ghq /usr/local/bin/ghq
 # shfmt
 curl -sSfL https://github.com/mvdan/sh/releases/download/v3.0.1/shfmt_v3.0.1_linux_amd64 > /usr/local/bin/shfmt
 chmod +x /usr/local/bin/shfmt
+
+# user setup
+chmod +x /tmp/init_vagrant_user.sh
+sudo -u vagrant -i /tmp/init_vagrant_user.sh
+
+# docker
+usermod -a -G docker vagrant
+
+# change shell
+chsh -s $(which tmux) vagrant
+
+# fish
+curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
 
 # bazel
 curl https://bazel.build/bazel-release.pub.gpg | sudo apt-key add -
