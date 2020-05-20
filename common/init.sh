@@ -4,6 +4,8 @@ set -eu
 
 add-apt-repository -y ppa:lazygit-team/release
 add-apt-repository -y ppa:cwchien/gradle
+# Go
+add-apt-repository -y ppa:longsleep/golang-backports
 
 apt-get update -yqq
 apt-get install -y \
@@ -14,6 +16,7 @@ apt-get install -y \
   docker.io \
   fish \
   git \
+  golang-go \
   gradle \
   lazygit \
   peco \
