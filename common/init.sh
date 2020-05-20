@@ -67,6 +67,18 @@ fish -c "fisher add fisherman/z"
 
 pip3 install --user virtualenv
 
+repos=(
+  jiro4989/infra
+  jiro4989/websh
+  jiro4989/nimbot
+  jiro4989/workspace
+  jiro4989/sandbox
+  jiro4989/at_coder_note
+)
+for r in \${repos[@]}; do
+  ghq get -p "\$r"
+done
+
 EOS
 
 # Neovim
