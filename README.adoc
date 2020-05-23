@@ -31,3 +31,38 @@ vagrant init
 vagrant up
 vagrant ssh
 ----
+
+== ディレクトリ
+
+各ディレクトリの役割は以下の通り。
+
+[options="header"]
+|=================
+| ディレクトリ | 説明
+| common | ubuntu/ubuntu-guiから参照されるプロビジョニングスクリプト
+| ubuntu-gui | Ubuntu環境でGUIを使う
+| ubuntu | Ubuntu環境でCUIのみ
+| main | 普段使いのUbuntu環境。自作のBox環境を使用する
+|=================
+
+mainのvm.boxに指定している `jiro4989/ubuntu` はネット上には存在しない。
+上記Boxは、 このリポジトリのubuntuディレクトリ配下で `vagrant up` してプロビジョニングしたVMを出力したものである。
+
+普段づかいの仮想環境を再構築するときに
+毎回プロビジョニングしなおすのは時間がかかる。
+
+プロビジョニング済みのBoxをローカルに保存しておき
+mainからはプロビジョニング済みのBoxを使い回すことで、
+プロビジョニングにかかる時間を短縮する。
+(仮想環境のゴールデンイメージ化)
+
+`jiro4989/ubuntu` Boxを作成するための手順は以下。
+
+[source,bash]
+----
+cd ubuntu
+vagrant up
+vagrant package
+vagrant box add jiro4989/ubuntu package.box
+vagrant box list
+----

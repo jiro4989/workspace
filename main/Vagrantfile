@@ -1,0 +1,20 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "jiro4989/ubuntu"
+
+  config.vm.network "forwarded_port", guest: 80, host: 10080
+  config.vm.network "forwarded_port", guest: 3000, host: 13000
+
+  config.vm.synced_folder "C:\\Users\\jiro4989\\.ssh", "/home/vagrant/.host.ssh"
+  config.vm.synced_folder "C:\\Users\\jiro4989\\shared", "/home/vagrant/shared"
+  config.vm.provision "file", source: "~/.netrc", destination: ".netrc"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.customize [
+      "modifyvm", :id,
+      "--clipboard", "bidirectional", # クリップボードの共有
+    ]
+  end
+end
