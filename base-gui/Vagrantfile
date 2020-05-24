@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "jiro4989/base-gui"
+  config.vm.box = "jiro4989/ubuntu"
 
   config.vm.synced_folder "C:\\Users\\jiro4989\\.ssh", "/home/vagrant/.host.ssh"
   config.vm.provision "file", source: "~/.netrc", destination: ".netrc"
@@ -25,4 +25,6 @@ Vagrant.configure("2") do |config|
       "--paravirtprovider", "kvm",
     ]
   end
+
+  config.vm.provision "shell", path: "init.sh"
 end
