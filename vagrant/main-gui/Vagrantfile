@@ -1,0 +1,30 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "jiro4989/ubuntu"
+
+  config.vm.synced_folder "C:\\Users\\jiro4989\\.ssh", "/home/vagrant/.host.ssh"
+  config.vm.provision "file", source: "~/.netrc", destination: ".netrc"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.gui = true
+    vb.memory = "8192" # RAMを使える量を変更
+    # cpu の数
+    vb.cpus = 4
+    vb.customize [
+      "modifyvm", :id,
+      "--vram", "256", # ビデオメモリ確保（フルスクリーンモードにするため
+      "--clipboard", "bidirectional", # クリップボードの共有
+      "--accelerate3d", "on",
+      "--hwvirtex", "on",
+      "--nestedpaging", "on",
+      "--largepages", "on",
+      "--ioapic", "on",
+      "--pae", "on",
+      "--paravirtprovider", "kvm",
+    ]
+  end
+
+  config.vm.provision "shell", path: "init.sh"
+end
