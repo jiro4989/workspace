@@ -4,7 +4,7 @@ set -eu
 
 for d in base base-gui; do
   (
-    cd "vagrant/$d"
+    cd "$d"
     vagrant init
     vagrant up
     vagrant package
@@ -15,7 +15,7 @@ done
 
 for d in main main-gui; do
   (
-    cd "vagrant/$d"
+    cd "$d"
     vagrant init
     vagrant up
     vagrant halt
