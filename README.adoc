@@ -26,8 +26,9 @@ Infrastructure as Codeするなら自分用の開発環境だってコード化�
 
 [source,bash]
 ----
-cd ubuntu
-vagrant init
+./setup.sh
+
+cd main
 vagrant up
 vagrant ssh
 ----
@@ -39,30 +40,23 @@ vagrant ssh
 [options="header"]
 |=================
 | ディレクトリ | 説明
-| common | ubuntu/ubuntu-guiから参照されるプロビジョニングスクリプト
-| ubuntu-gui | Ubuntu環境でGUIを使う
-| ubuntu | Ubuntu環境でCUIのみ
-| main | 普段使いのUbuntu環境。自作のBox環境を使用する
+| base | すべての環境に共通で必要となる環境
+| base-gui | base boxを使用し、GUI関連の環境を追加した環境
+| main | base boxを使用した環境
+| main-gui | base-gui boxを使用した環境
 |=================
 
-mainのvm.boxに指定している `jiro4989/ubuntu` はネット上には存在しない。
-上記Boxは、 このリポジトリのubuntuディレクトリ配下で `vagrant up` してプロビジョニングしたVMを出力したものである。
+base環境を `vagrant up` し、その環境のboxを各種環境から参照する。
+各環境の依存関係は以下の通り。
 
-普段づかいの仮想環境を再構築するときに
-毎回プロビジョニングしなおすのは時間がかかる。
+ base -+- base-gui --- main-gui
+       `- main
 
-プロビジョニング済みのBoxをローカルに保存しておき
-mainからはプロビジョニング済みのBoxを使い回すことで、
-プロビジョニングにかかる時間を短縮する。
+普段使う環境は `main` と `main-gui` で、 `base` と `base-gui` は直接使用しない。
+`base` と `base-gui` で作成した環境をローカルにboxとして保存し、
+`main` と `main-gui` はローカルのboxを使用して環境を起動する。
+
+プロビジョニング済みのboxをローカルに保存し、
+`main` からはプロビジョニング済みのboxを使い回すことで、
+環境再構築にかかる時間を短縮する。
 (仮想環境のゴールデンイメージ化)
-
-`jiro4989/ubuntu` Boxを作成するための手順は以下。
-
-[source,bash]
-----
-cd ubuntu
-vagrant up
-vagrant package
-vagrant box add jiro4989/ubuntu package.box
-vagrant box list
-----
