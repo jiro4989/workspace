@@ -18,3 +18,6 @@ unzip openjfx-14.0.1_linux-x64_bin-sdk.zip
 mkdir -p /opt/java
 mv jdk-14 /opt/java/
 ln -sfn /opt/java/jdk-14 /opt/java/current
+
+# sdl2
+apt-get install -y libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-net-dev libsdl2-ttf-dev
