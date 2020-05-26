@@ -3,7 +3,7 @@
 set -eu
 
 # GUI環境の構築
-apt-get install -y ubuntu-desktop
+apt-get install -y ubuntu-desktop xvfb
 
 cd /tmp
 
