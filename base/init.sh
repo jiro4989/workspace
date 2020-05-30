@@ -19,6 +19,7 @@ apt-get install -y \
   golang-go \
   gradle \
   lazygit \
+  npm \
   peco \
   python3 \
   python3-pip \
