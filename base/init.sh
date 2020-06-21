@@ -89,9 +89,10 @@ curl -sSfL https://github.com/neovim/neovim/releases/download/nightly/nvim.appim
 chmod 0755 /usr/local/bin/nvim
 
 # ssh
-for f in id_rsa id_rsa.pub jiro4989 jiro4989.pub config; do
-  install -o vagrant -g vagrant -m 0600 /home/vagrant/.host.ssh/$f /home/vagrant/.ssh/$f
-done
+cp -r /home/vagrant/.host.ssh/conf.d /home/vagrant/.ssh/
+chmod 0600 /home/vagrant/.ssh/conf.d/*
+chmod 0700 /home/vagrant/.ssh/conf.d
+chown -R vagrant:vagrant /home/vagrant/.ssh/conf.d
 
 # ghq
 curl -sSL https://github.com/x-motemen/ghq/releases/download/v1.1.0/ghq_linux_amd64.zip > /tmp/ghq_linux_amd64.zip
