@@ -5,6 +5,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = "jiro4989/base-gui"
 
   config.vm.synced_folder "C:\\Users\\jiro4989\\.ssh", "/home/vagrant/.host.ssh"
+  config.vm.synced_folder "C:\\Users\\jiro4989\\shared", "/home/vagrant/shared"
   config.vm.provision "file", source: "~/.netrc", destination: ".netrc"
 
   config.vm.provider "virtualbox" do |vb|
