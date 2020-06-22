@@ -9,8 +9,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.provider "virtualbox" do |vb|
     vb.gui = true
-    vb.memory = "4096" # RAMを使える量を変更
-    #vb.memory = "8192" # RAMを使える量を変更
+    vb.memory = "8192" # RAMを使える量を変更
     vb.cpus = 4
     vb.customize [
       "modifyvm", :id,
