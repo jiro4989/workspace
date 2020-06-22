@@ -13,6 +13,7 @@ Vagrant.configure("2") do |config|
     vb.cpus = 4
     vb.customize [
       "modifyvm", :id,
+      "--cableconnected1", "on",
       "--vram", "256", # ビデオメモリ確保（フルスクリーンモードにするため
       "--clipboard", "bidirectional", # クリップボードの共有
       "--accelerate3d", "on",
