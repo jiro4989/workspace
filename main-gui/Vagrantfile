@@ -25,6 +25,7 @@ Vagrant.configure("2") do |config|
       "--ioapic", "on",
       "--pae", "on",
       "--paravirtprovider", "legacy",
+      "--nestedpaging", "off",
     ]
   end
 end
