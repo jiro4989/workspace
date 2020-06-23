@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "jiro4989/base"
+  config.vm.box = "jiro4989/base-ubuntu-20.04"
 
   config.vm.synced_folder "C:\\Users\\jiro4989\\.ssh", "/home/vagrant/.host.ssh"
   config.vm.provision "file", source: "~/.netrc", destination: ".netrc"
@@ -22,7 +22,7 @@ Vagrant.configure("2") do |config|
       "--largepages", "on",
       "--ioapic", "on",
       "--pae", "on",
-      "--paravirtprovider", "kvm",
+      "--paravirtprovider", "legacy",
     ]
   end
 
