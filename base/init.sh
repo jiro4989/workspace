@@ -62,6 +62,7 @@ git clone https://github.com/jiro4989/dotfiles
 pushd dotfiles
 ./setup.sh
 
+# fish
 curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
 fish -c "fisher add edc/bass"
 fish -c "fisher add oh-my-fish/theme-clearance"
@@ -85,6 +86,15 @@ done
 # rbenv
 git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+
+# mmv
+(
+  cd /tmp
+  wget https://github.com/itchyny/mmv/releases/download/v0.1.1/mmv_v0.1.1_linux_amd64.tar.gz
+  tar xzf ./mmv*.tar.gz
+  mkdir -p ~/bin
+  mv ./mmv*/mmv ~/bin/
+)
 
 EOS
 
