@@ -82,6 +82,10 @@ for r in \${repos[@]}; do
   : ghq get -p "\$r"
 done
 
+# rbenv
+git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+
 EOS
 
 # Neovim
