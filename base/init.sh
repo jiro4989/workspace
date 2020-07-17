@@ -87,13 +87,20 @@ done
 git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 
+mkdir -p ~/bin
+
 # mmv
 (
   cd /tmp
   wget https://github.com/itchyny/mmv/releases/download/v0.1.1/mmv_v0.1.1_linux_amd64.tar.gz
   tar xzf ./mmv*.tar.gz
-  mkdir -p ~/bin
-  mv ./mmv*/mmv ~/bin/
+  install -m 0755 ./mmv*/mmv ~/bin/
+)
+
+# direnv
+(
+  wget https://github.com/direnv/direnv/releases/download/v2.21.3/direnv.linux-amd64
+  install -m 0755 ./direnv* ~/bin/
 )
 
 EOS
