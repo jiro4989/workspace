@@ -94,13 +94,13 @@ mkdir -p ~/bin
   cd /tmp
   wget https://github.com/itchyny/mmv/releases/download/v0.1.1/mmv_v0.1.1_linux_amd64.tar.gz
   tar xzf ./mmv*.tar.gz
-  install -m 0755 ./mmv*/mmv ~/bin/
+  install -m 0755 ./mmv*/mmv ~/bin/mmv
 )
 
 # direnv
 (
   wget https://github.com/direnv/direnv/releases/download/v2.21.3/direnv.linux-amd64
-  install -m 0755 ./direnv* ~/bin/
+  install -m 0755 ./direnv* ~/bin/direnv
 )
 
 EOS
