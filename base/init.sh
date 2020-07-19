@@ -14,7 +14,6 @@ apt-get install -y \
   docker.io \
   fish \
   git \
-  golang-go \
   gradle \
   lazygit \
   npm \
@@ -146,3 +145,8 @@ apt update -yqq && apt install -y bazel
 # gh
 curl -sSfL https://github.com/cli/cli/releases/download/v0.10.0/gh_0.10.0_linux_amd64.deb > /tmp/gh_0.10.0_linux_amd64.deb
 apt install -y /tmp/gh_*_linux_amd64.deb
+
+# go
+wget https://golang.org/dl/go1.14.6.linux-amd64.tar.gz
+tar -C /usr/local xzf go1.14.6.linux-amd64.tar.gz
+
