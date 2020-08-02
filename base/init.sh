@@ -137,11 +137,6 @@ chsh -s $(which tmux) vagrant
 # fish
 curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
 
-# bazel
-curl https://bazel.build/bazel-release.pub.gpg | sudo apt-key add -
-echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | tee /etc/apt/sources.list.d/bazel.list
-apt update -yqq && apt install -y bazel
-
 # gh
 curl -sSfL https://github.com/cli/cli/releases/download/v0.10.0/gh_0.10.0_linux_amd64.deb > /tmp/gh_0.10.0_linux_amd64.deb
 apt install -y /tmp/gh_*_linux_amd64.deb
