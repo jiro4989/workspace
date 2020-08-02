@@ -148,5 +148,5 @@ apt install -y /tmp/gh_*_linux_amd64.deb
 
 # go
 wget https://golang.org/dl/go1.14.6.linux-amd64.tar.gz
-tar -C /usr/local xzf go1.14.6.linux-amd64.tar.gz
-
+tar xzf go1.14.6.linux-amd64.tar.gz
+mv go /usr/local/
