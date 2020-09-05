@@ -145,3 +145,6 @@ apt install -y /tmp/gh_*_linux_amd64.deb
 wget https://golang.org/dl/go1.14.6.linux-amd64.tar.gz
 tar xzf go1.14.6.linux-amd64.tar.gz
 mv go /usr/local/
+
+# gopls
+sudo -u vagrant bash -c 'GO111MODULE=off go get -u golang.org/x/tools/gopls'
