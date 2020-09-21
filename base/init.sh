@@ -148,3 +148,8 @@ mv go /usr/local/
 
 # gopls
 sudo -u vagrant bash -c 'GO111MODULE=off go get -u golang.org/x/tools/gopls'
+
+# fzf
+wget https://github.com/junegunn/fzf-bin/releases/download/0.22.0/fzf-0.22.0-linux_amd64.tgz
+tar xzf fzf-0.22.0-linux_amd64.tgz
+install -m 0755 fzf /usr/local/bin/fzf
