@@ -143,7 +143,7 @@ apt install -y /tmp/gh_*_linux_amd64.deb
 
 # go
 wget https://golang.org/dl/go1.14.6.linux-amd64.tar.gz
-tar xzf go1.14.6.linux-amd64.tar.gz
+tar xzf go*.linux-amd64.tar.gz
 mv go /usr/local/
 
 # gopls
@@ -151,5 +151,9 @@ sudo -u vagrant bash -c 'GO111MODULE=off go get -u golang.org/x/tools/gopls'
 
 # fzf
 wget https://github.com/junegunn/fzf-bin/releases/download/0.22.0/fzf-0.22.0-linux_amd64.tgz
-tar xzf fzf-0.22.0-linux_amd64.tgz
+tar xzf fzf-*-linux_amd64.tgz
 install -m 0755 fzf /usr/local/bin/fzf
+
+# ripgrep
+curl -LO https://github.com/BurntSushi/ripgrep/releases/download/12.1.1/ripgrep_12.1.1_amd64.deb
+dpkg -i ripgrep_*_amd64.deb
