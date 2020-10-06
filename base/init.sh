@@ -10,11 +10,13 @@ apt-get install -y \
   build-essential \
   ca-certificates \
   ctags \
+  ctop \
   curl \
   docker.io \
   fish \
   git \
   gradle \
+  htop \
   lazygit \
   npm \
   peco \
