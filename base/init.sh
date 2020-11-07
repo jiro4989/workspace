@@ -56,7 +56,7 @@ curl https://nim-lang.org/choosenim/init.sh -sSf > /tmp/init.sh
 sh /tmp/init.sh -y >/dev/null 2>&1
 
 export PATH=\$PATH:\$HOME/.nimble/bin
-nimble install -Y inim bump subnet nimjson monit
+nimble install -Y inim bump subnet nimjson
 
 # dotfiles
 git clone https://github.com/jiro4989/dotfiles
