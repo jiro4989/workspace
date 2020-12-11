@@ -72,16 +72,15 @@ fish -c "fisher add fisherman/z"
 pip3 install --user virtualenv
 
 repos=(
-  jiro4989/infra
+  # jiro4989/infra
   jiro4989/websh
   jiro4989/nimbot
   jiro4989/workspace
   jiro4989/sandbox
-  jiro4989/at_coder_note
 )
 for r in \${repos[@]}; do
-  # ghw getできない
-  : ghq get -p "\$r"
+  # ghq getできない
+  ghq get -p "\$r"
 done
 
 # rbenv
@@ -136,9 +135,6 @@ usermod -a -G docker vagrant
 # change shell
 chsh -s $(which tmux) vagrant
 
-# fish
-curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
-
 # gh
 curl -sSfL https://github.com/cli/cli/releases/download/v0.10.0/gh_0.10.0_linux_amd64.deb > /tmp/gh_0.10.0_linux_amd64.deb
 apt install -y /tmp/gh_*_linux_amd64.deb
@@ -159,7 +155,3 @@ install -m 0755 fzf /usr/local/bin/fzf
 # ripgrep
 curl -LO https://github.com/BurntSushi/ripgrep/releases/download/12.1.1/ripgrep_12.1.1_amd64.deb
 dpkg -i ripgrep_*_amd64.deb
-
-# go-task
-wget https://github.com/go-task/task/releases/download/v3.0.0/task_linux_amd64.deb
-dpkg -i task_linux_amd64.deb
