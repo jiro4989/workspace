@@ -21,6 +21,9 @@ Vagrant.configure("2") do |config|
       "--cableconnected1", "on",
       "--clipboard", "bidirectional", # クリップボードの共有
     ]
+    # NOTE: focal64 box bug: https://discuss.hashicorp.com/t/ubuntu-focal64-box-not-starting/14119
+    vb.customize ["modifyvm", :id, "--uart1", "0x3F8", "4"]
+    vb.customize ["modifyvm", :id, "--uartmode1", "file", File::NULL]
   end
 
   config.vm.provision "shell", path: "init.sh"
