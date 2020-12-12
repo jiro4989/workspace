@@ -117,6 +117,7 @@ curl -sSfL https://github.com/neovim/neovim/releases/download/nightly/nvim.appim
 chmod 0755 /usr/local/bin/nvim
 
 # ssh
+cp -r /home/vagrant/.host.ssh/config /home/vagrant/.ssh/
 cp -r /home/vagrant/.host.ssh/conf.d /home/vagrant/.ssh/
 chmod 0600 /home/vagrant/.ssh/conf.d/*
 chmod 0700 /home/vagrant/.ssh/conf.d
