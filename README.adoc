@@ -33,6 +33,24 @@ vagrant up
 vagrant ssh
 ----
 
+=== 単体のVMを作り直す
+
+以下のコマンドを入力する。
+
+[source,bash]
+----
+./build_box.sh base
+----
+
+=== 構築済みVMのスナップショットを取る
+
+以下のコマンドを入力する。
+
+[source,bash]
+----
+./save_snapshot.sh base
+----
+
 == ディレクトリ
 
 各ディレクトリの役割は以下の通り。
