@@ -42,8 +42,8 @@ vagrant ssh
 | ディレクトリ | 説明
 | base | すべての環境に共通で必要となる環境
 | base-gui | base boxを使用し、GUI関連の環境を追加した環境
-| main | base boxを使用した環境
-| main-gui | base-gui boxを使用した環境
+| main | [deprecated] base boxを使用した環境
+| main-gui | [deprecated] base-gui boxを使用した環境
 |=================
 
 base環境を `vagrant up` し、その環境のboxを各種環境から参照する。
