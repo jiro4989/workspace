@@ -39,6 +39,8 @@ install -o root -g root -m 0755 /tmp/docker-compose /usr/local/bin/docker-compos
 
 cat << EOS > /tmp/init_vagrant_user.sh
 
+export PATH=\$PATH:/usr/local/go/bin
+
 # Vim
 curl -sSf https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > /tmp/install_dein.sh
 bash /tmp/install_dein.sh ~/.cache/dein
@@ -103,6 +105,9 @@ mkdir -p ~/bin
   install -m 0755 ./direnv* ~/bin/direnv
 )
 
+# gopls
+GO111MODULE=off go get -u golang.org/x/tools/gopls
+
 EOS
 
 # Neovim
@@ -125,6 +130,11 @@ install -m 0755 ghq_linux_amd64/ghq /usr/local/bin/ghq
 curl -sSfL https://github.com/mvdan/sh/releases/download/v3.0.1/shfmt_v3.0.1_linux_amd64 > /usr/local/bin/shfmt
 chmod +x /usr/local/bin/shfmt
 
+# go
+wget https://golang.org/dl/go1.14.6.linux-amd64.tar.gz
+tar xzf go*.linux-amd64.tar.gz
+mv go /usr/local/
+
 # user setup
 chmod +x /tmp/init_vagrant_user.sh
 sudo -u vagrant -i /tmp/init_vagrant_user.sh
@@ -138,14 +148,6 @@ chsh -s $(which tmux) vagrant
 # gh
 curl -sSfL https://github.com/cli/cli/releases/download/v0.10.0/gh_0.10.0_linux_amd64.deb > /tmp/gh_0.10.0_linux_amd64.deb
 apt install -y /tmp/gh_*_linux_amd64.deb
-
-# go
-wget https://golang.org/dl/go1.14.6.linux-amd64.tar.gz
-tar xzf go*.linux-amd64.tar.gz
-mv go /usr/local/
-
-# gopls
-sudo -u vagrant bash -c 'GO111MODULE=off go get -u golang.org/x/tools/gopls'
 
 # fzf
 wget https://github.com/junegunn/fzf-bin/releases/download/0.22.0/fzf-0.22.0-linux_amd64.tgz
