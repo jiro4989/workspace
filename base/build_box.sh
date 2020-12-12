@@ -8,5 +8,5 @@ vagrant destroy -f
 vagrant up
 rm -f package.box || true
 vagrant package
-vagrant box add -f "jiro4989/base-ubuntu-20.04" package.box
+vagrant box add -f "$box_name" package.box
 vagrant halt
