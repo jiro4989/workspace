@@ -39,6 +39,8 @@ install -o root -g root -m 0755 /tmp/docker-compose /usr/local/bin/docker-compos
 
 cat << EOS > /tmp/init_vagrant_user.sh
 
+set -eu
+
 export PATH=\$PATH:/usr/local/go/bin
 
 # Vim
