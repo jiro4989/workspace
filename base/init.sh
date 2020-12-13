@@ -87,10 +87,6 @@ for r in \${repos[@]}; do
   ghq get -p "\$r"
 done
 
-# rbenv
-git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
-
 mkdir -p ~/bin
 
 # mmv
@@ -109,6 +105,19 @@ mkdir -p ~/bin
 
 # gopls
 GO111MODULE=off go get -u golang.org/x/tools/gopls
+
+# anyenv / nodenv
+git clone https://github.com/riywo/anyenv ~/.anyenv
+export PATH="\$HOME/.anyenv/bin:\$PATH"
+mkdir -p \$(anyenv root)/plugins
+yes | anyenv install --init
+git clone https://github.com/znz/anyenv-update.git \$(anyenv root)/plugins/anyenv-update
+anyenv install nodeenv
+node_version=14.15.1
+nodenv install \$node_version
+nodenv local \$node_version
+nodenv local
+node -v
 
 EOS
 
