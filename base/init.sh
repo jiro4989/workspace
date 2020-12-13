@@ -112,7 +112,10 @@ export PATH="\$HOME/.anyenv/bin:\$PATH"
 mkdir -p \$(anyenv root)/plugins
 yes | anyenv install --init
 git clone https://github.com/znz/anyenv-update.git \$(anyenv root)/plugins/anyenv-update
+
 anyenv install nodeenv
+eval "\$(anyenv init -)"
+
 node_version=14.15.1
 nodenv install \$node_version
 nodenv local \$node_version
