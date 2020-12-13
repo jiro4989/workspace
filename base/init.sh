@@ -112,12 +112,23 @@ export PATH="\$HOME/.anyenv/bin:\$PATH"
 mkdir -p \$(anyenv root)/plugins
 yes | anyenv install --init
 git clone https://github.com/znz/anyenv-update.git \$(anyenv root)/plugins/anyenv-update
+
 anyenv install nodeenv
+anyenv install goenv
+eval "\$(anyenv init -)"
+
+# nodenv
 node_version=14.15.1
 nodenv install \$node_version
 nodenv local \$node_version
 nodenv local
 node -v
+
+# goenv
+go_version=1.15.5
+goenv install \$go_version
+goenv local \$go_version
+go version
 
 EOS
 
