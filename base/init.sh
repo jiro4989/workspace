@@ -172,3 +172,15 @@ install -m 0755 fzf /usr/local/bin/fzf
 # ripgrep
 curl -LO https://github.com/BurntSushi/ripgrep/releases/download/12.1.1/ripgrep_12.1.1_amd64.deb
 dpkg -i ripgrep_*_amd64.deb
+
+(
+  cd /tmp
+
+  # Java 14
+  curl -O https://download.java.net/java/GA/jdk14/076bab302c7b4508975440c56f6cc26a/36/GPL/openjdk-14_linux-x64_bin.tar.gz
+  tar xvf openjdk-14_linux-x64_bin.tar.gz
+
+  mkdir -p /opt/java
+  mv jdk-14 /opt/java/
+  ln -sfn /opt/java/jdk-14 /opt/java/current
+)
