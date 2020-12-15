@@ -187,3 +187,7 @@ install -m 0755 fzf /usr/local/bin/fzf
 # ripgrep
 curl -LO https://github.com/BurntSushi/ripgrep/releases/download/12.1.1/ripgrep_12.1.1_amd64.deb
 dpkg -i ripgrep_*_amd64.deb
+
+# go-task
+wget https://github.com/go-task/task/releases/download/v3.0.0/task_linux_amd64.deb
+dpkg -i ./task_linux_amd64.deb
