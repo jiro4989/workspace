@@ -125,7 +125,6 @@ node -v
 # Clojure
 wget https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein
 install -m 0755 lein ~/bin/lein
-lein
 
 EOS
 
