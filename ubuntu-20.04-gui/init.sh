@@ -2,6 +2,8 @@
 
 set -eu
 
+apt-get update -yqq
+
 # GUI環境の構築
 apt-get install -y lxde xvfb
 
