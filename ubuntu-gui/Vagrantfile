@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "jiro4989/base-ubuntu-20.04-20201212"
+  config.vm.box = "jiro4989/ubuntu-20.04-20201212"
 
   config.vm.network "forwarded_port", guest: 80, host: 80
   config.vm.network "forwarded_port", guest: 3000, host: 3000
