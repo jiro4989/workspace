@@ -13,6 +13,8 @@ set -x
 readonly target_dir=$1
 readonly box_name="jiro4989/$target_dir-$(date +%Y%m%d)"
 
+cd "$target_dir"
+
 vagrant destroy -f
 vagrant up
 rm -f package.box || true
