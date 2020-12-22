@@ -39,7 +39,7 @@ vagrant ssh
 
 [source,bash]
 ----
-./build_box.sh ubuntu
+./build_box.sh ubuntu-20.04
 ----
 
 === 構築済みVMのスナップショットを取る
