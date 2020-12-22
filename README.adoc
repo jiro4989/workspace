@@ -3,14 +3,18 @@
 :sectnums:
 
 Vagrantでいつでも捨てて再構築できる開発環境を構築する。
+
 Infrastructure as Codeするなら自分用の開発環境だってコード化したい。
 やらかしたって `vagrant destroy && vagrant up` でまたやり直せる。
+
 もう `rm -rf` だって怖くない。
 （マウントしてるホストのファイルは死ぬ）
 
+snapshotも取ってるのでへんなことしてもある時点から復元できる。
+
 == 検証環境
 
-* Ubuntu 19.04
+* Ubuntu 20.04
 * Windows 10 home
 
 == Vagrantを使えるようにする手順
@@ -28,7 +32,7 @@ Infrastructure as Codeするなら自分用の開発環境だってコード化�
 ----
 ./setup.sh
 
-cd main
+cd ubuntu-20.04
 vagrant up
 vagrant ssh
 ----
@@ -48,7 +52,7 @@ vagrant ssh
 
 [source,bash]
 ----
-./save_snapshot.sh base
+./save_snapshot.sh ubuntu-20.04
 ----
 
 == ディレクトリ
@@ -58,23 +62,11 @@ vagrant ssh
 [options="header"]
 |=================
 | ディレクトリ | 説明
-| base | すべての環境に共通で必要となる環境
-| base-gui | base boxを使用し、GUI関連の環境を追加した環境
-| main | [deprecated] base boxを使用した環境
-| main-gui | [deprecated] base-gui boxを使用した環境
+| ubuntu-20.04 | Ubuntu 20.04 (デスクトップなし)
+| ubuntu-20.04-gui | Ubuntu 20.04 (デスクトップあり)
 |=================
 
-base環境を `vagrant up` し、その環境のboxを各種環境から参照する。
-各環境の依存関係は以下の通り。
+ubuntu-20.04-gui は ubuntu-20.04で作成されたBoxをベースに、
+デスクトップ環境や使いたいライブラリをインストールした環境。
 
- base -+- base-gui --- main-gui
-       `- main
-
-普段使う環境は `main` と `main-gui` で、 `base` と `base-gui` は直接使用しない。
-`base` と `base-gui` で作成した環境をローカルにboxとして保存し、
-`main` と `main-gui` はローカルのboxを使用して環境を起動する。
-
-プロビジョニング済みのboxをローカルに保存し、
-`main` からはプロビジョニング済みのboxを使い回すことで、
-環境再構築にかかる時間を短縮する。
-(仮想環境のゴールデンイメージ化)
+前提として先に ubuntu-20.04 のプロビジョニングが完了していないといけない。
