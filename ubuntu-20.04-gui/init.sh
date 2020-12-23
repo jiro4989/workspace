@@ -2,6 +2,8 @@
 
 set -eu
 
+export DEBIAN_FRONTEND=noninteractive
+
 apt-get update -yqq
 
 # GUI環境の構築
