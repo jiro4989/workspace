@@ -50,6 +50,7 @@ RUN wget -q https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGI
  && install -m 0755 ./lazygit /usr/local/bin/
 
 # ユーザを作成
+RUN groupadd --gid ${LOCAL_GID} ${WORKUSER}
 RUN useradd -m --uid ${LOCAL_UID} --gid ${LOCAL_GID} -d "/home/${WORKUSER}" -s "$(command -v tmux)" "${WORKUSER}"
 USER ${WORKUSER}
 ENV HOME /home/${WORKUSER}
