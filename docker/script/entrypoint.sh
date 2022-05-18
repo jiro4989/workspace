@@ -1,10 +1,8 @@
-#!/bin/bash
-
-set -eux
+#!/usr/bin/env fish
 
 # Fishプラグインをセットアップ
-fish -c "fisher install edc/bass"
-fish -c "fisher install oh-my-fish/theme-clearance"
-fish -c "fisher install fisherman/z"
+fisher install edc/bass
+fisher install oh-my-fish/theme-clearance
+fisher install fisherman/z
 
 exec tmux
