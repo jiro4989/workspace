@@ -11,6 +11,7 @@ RUN apt-get update -yqq \
  && apt-get install -y \
     software-properties-common \
     ca-certificates \
+    curl \
     ;
 
 RUN add-apt-repository -y ppa:lazygit-team/release \
@@ -23,7 +24,6 @@ RUN curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add - \
 RUN apt-get update -yqq \
  && apt-get install -y \
     ctop \
-    curl \
     docker.io \
     fish \
     git \
