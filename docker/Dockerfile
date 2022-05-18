@@ -12,15 +12,15 @@ ENV LAZYGIT_VERSION=0.34
 
 RUN apt-get update -yqq \
  && apt-get install -y \
-    software-properties-common \
     ca-certificates \
-    curl \
     ctop \
+    curl \
     docker.io \
     fish \
     git \
     htop \
     shellcheck \
+    software-properties-common \
     tmux \
     unzip \
     vim \
