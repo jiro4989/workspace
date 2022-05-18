@@ -55,6 +55,8 @@ RUN git clone https://github.com/jiro4989/dotfiles \
  && relma init \
  && relma install -f ./conf/releases.json
 
+ENV PATH=${PATH}:${HOME}/relma/bin
+
 # Setup git
 RUN git config --global user.name "${WORKUSER:-$USER}" \
  && git config --global user.email "${WORKUSER:-$USER}" \
