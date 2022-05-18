@@ -3,3 +3,33 @@
 :sectnums:
 
 Docker上に構築した開発環境。
+
+== 使い方
+
+=== ヘルプ出力
+
+[source,bash]
+----
+make
+----
+
+=== 環境の立ち上げ
+
+[source,bash]
+----
+make start TARGET=base
+----
+
+=== 環境の停止
+
+[source,bash]
+----
+make stop
+----
+
+=== 環境の削除
+
+[source,bash]
+----
+make clean
+----
