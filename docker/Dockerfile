@@ -81,6 +81,7 @@ RUN fish -c "fisher install edc/bass"
 RUN fish -c "fisher install oh-my-fish/theme-clearance"
 RUN fish -c "fisher install fisherman/z"
 
+ENTRYPOINT ["tmux"]
 
 FROM base as nim
 
