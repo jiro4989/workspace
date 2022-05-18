@@ -15,5 +15,5 @@ build:
 .PHONY: start
 start:
 	docker run \
-		-it $(IMAGE_PREFIX)_$(TARGET) \
-		$(OPTS)
+		$(OPTS) \
+		-it $(IMAGE_PREFIX)_$(TARGET)
