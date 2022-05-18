@@ -1,5 +1,6 @@
 IMAGE_PREFIX := workspace
 OPTS := \
+	--group-add $(shell awk -F : '$$1 == "docker"{ print $$3 }' /etc/group) \
 	--mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock \
 	--mount type=bind,src=$(HOME)/.local/share,dst=$(HOME)/.local/share
 
@@ -20,8 +21,8 @@ help:
 build:
 	docker build \
 		--build-arg WORKUSER=$(USER) \
-		--build-arg LOCAL_UID=`id -u` \
-		--build-arg LOCAL_GID=`id -g` \
+		--build-arg LOCAL_UID=$(shell id -u) \
+		--build-arg LOCAL_GID=$(shell id -g) \
 		-t $(IMAGE_PREFIX)_$(TARGET) \
 		--target $(TARGET) \
 		.
