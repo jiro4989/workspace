@@ -3,9 +3,9 @@
 set -eu
 
 if [[ $# -eq 0 ]]; then
-	echo "第1引数は必須です。" >&2
-	echo "example: $0 ubuntu-20.04"
-	exit 1
+  echo "第1引数は必須です。" >&2
+  echo "example: $0 ubuntu-20.04"
+  exit 1
 fi
 
 set -x
