@@ -1,0 +1,18 @@
+= workspace
+:toc: left
+:sectnums:
+
+いつでも捨てて再構築できる開発環境を構築する。
+
+== docker
+
+開発環境をすべてdocker上に閉じ込めたもの。
+
+環境の使い方は docker/README.adoc を参照。
+
+== vagrant
+
+以前はvagrantを使っていたけれど、こっちはもう使っていない。
+
+一応当時の環境構築手順とかは残してある。
+詳細は vagrant/README.adoc を参照。
