@@ -1,6 +1,7 @@
 IMAGE_PREFIX := workspace
-OPTS := --mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock \
-        --mount type=bind,src=$(HOME)/.local/share,dst=$(HOME)/.local/share
+OPTS := \
+	--mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock \
+	--mount type=bind,src=$(HOME)/.local/share,dst=$(HOME)/.local/share
 
 .PHONY: help
 help:
