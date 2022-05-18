@@ -75,8 +75,12 @@ RUN $HOME/relma/bin/ghq get -P \
     jiro4989/workspace \
     ;
 
-ADD ./script/entrypoint.sh /usr/local/bin/entrypoint.sh
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+# Fish
+RUN curl https://git.io/fisher --create-dirs -sLo $HOME/.config/fish/functions/fisher.fish
+RUN fish -c "fisher install edc/bass"
+RUN fish -c "fisher install oh-my-fish/theme-clearance"
+RUN fish -c "fisher install fisherman/z"
+
 
 FROM base as nim
 
