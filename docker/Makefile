@@ -5,4 +5,5 @@ build:
 		--build-arg LOCAL_UID=`id -u` \
 		--build-arg LOCAL_GID=`id -g` \
 		-t workspace_$(TARGET) \
-		--target $(TARGET)
+		--target $(TARGET) \
+		.
