@@ -6,23 +6,13 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV SHFMT_VERSION=3.0.1
 ENV DIRENV_VERSION=2.21.3
 ENV RELMA_VERSION=1.4.0
+ENV LAZYGIT_VERSION=0.34
 
 RUN apt-get update -yqq \
  && apt-get install -y \
     software-properties-common \
     ca-certificates \
     curl \
-    ;
-
-RUN add-apt-repository -y ppa:lazygit-team/release \
- && add-apt-repository -y ppa:cwchien/gradle \
- && add-apt-repository -y ppa:git-core/ppa
-
-RUN curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add - \
- && apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
-
-RUN apt-get update -yqq \
- && apt-get install -y \
     ctop \
     docker.io \
     fish \
@@ -47,9 +37,16 @@ RUN wget -q "https://github.com/neovim/neovim/releases/download/nightly/nvim.app
  && install -m 0755 direnv.linux-amd64 direnv
 
 WORKDIR /tmp
+
+# relma
 RUN wget -q https://github.com/jiro4989/relma/releases/download/v${RELMA_VERSION}/relma-linux-amd64.tar.gz \
  && tar xzf relma-linux-amd64.tar.gz \
  && install -m 0755 ./relma /usr/local/bin/relma
+
+# lazygit
+RUN wget -q https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz \
+ && tar xf lazygit* \
+ && install -m 0755 ./lazygit /usr/local/bin/
 
 # dotfiles
 WORKDIR /home/${WORKUSER}
@@ -110,6 +107,8 @@ RUN ghq get -P \
 
 FROM base as java
 
+RUN add-apt-repository -y ppa:cwchien/gradle \
+
 RUN apt-get update -yqq \
  && apt-get install -y \
     ca-certificates \
@@ -157,6 +156,9 @@ RUN wget -q https://raw.githubusercontent.com/nodenv/nodenv-installer/master/bin
  && bash ./nodenv-installer
 
 FROM base as infra
+
+RUN curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add - \
+ && apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
 
 RUN apt-get update -yqq \
  && apt-get install -y \
