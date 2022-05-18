@@ -52,6 +52,7 @@ RUN wget -q https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGI
 # ユーザを作成
 RUN groupadd --gid ${LOCAL_GID} ${WORKUSER}
 RUN useradd -m --uid ${LOCAL_UID} --gid ${LOCAL_GID} -d "/home/${WORKUSER}" -s "$(command -v tmux)" "${WORKUSER}"
+RUN gpasswd -a ${WORKUSER} docker
 USER ${WORKUSER}
 ENV HOME /home/${WORKUSER}
 
