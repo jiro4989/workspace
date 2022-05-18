@@ -47,8 +47,13 @@ RUN wget -q https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGI
  && tar xf lazygit* \
  && install -m 0755 ./lazygit /usr/local/bin/
 
+# ユーザを作成
+RUN useradd -m -d "/home/${WORKUSER}" -s "$(command -v tmux)" "${WORKUSER}"
+USER ${WORKUSER}
+ENV HOME /home/${WORKUSER}
+
 # dotfiles
-WORKDIR /home/${WORKUSER}
+WORKDIR ${HOME}
 RUN git clone https://github.com/jiro4989/dotfiles \
  && cd dotfiles \
  && ./script/setup/link_config.sh \
@@ -64,19 +69,14 @@ RUN git config --global user.name "${WORKUSER:-$USER}" \
  && git config --global alias.see browse \
  && git config --global ghq.root ~/src
 
-RUN ghq get -P \
+RUN $HOME/relma/bin/ghq get -P \
     jiro4989/sandbox \
     jiro4989/scripts \
     jiro4989/workspace \
     ;
 
-# デフォルトシェルをtmuxに変更
-RUN chsh -s "$(command -v tmux)" "${WORKUSER:-$USER}"
-
-# fishのプラグインを追加
-RUN fish -c "fisher install edc/bass"
-RUN fish -c "fisher install oh-my-fish/theme-clearance"
-RUN fish -c "fisher install fisherman/z"
+ADD ./script/entrypoint.sh /usr/local/bin/entrypoint.sh
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
 FROM base as nim
 
