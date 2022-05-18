@@ -7,6 +7,12 @@ ENV SHFMT_VERSION=3.0.1
 ENV DIRENV_VERSION=2.21.3
 ENV RELMA_VERSION=1.4.0
 
+RUN apt-get update -yqq \
+ && apt-get install -y \
+    software-properties-common \
+    ca-certificates \
+    ;
+
 RUN add-apt-repository -y ppa:lazygit-team/release \
  && add-apt-repository -y ppa:cwchien/gradle \
  && add-apt-repository -y ppa:git-core/ppa
@@ -16,7 +22,6 @@ RUN curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add - \
 
 RUN apt-get update -yqq \
  && apt-get install -y \
-    ca-certificates \
     ctop \
     curl \
     docker.io \
