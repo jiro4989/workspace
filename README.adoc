@@ -8,7 +8,7 @@
 
 開発環境をすべてdocker上に閉じ込めたもの。
 
-環境の使い方は docker/README.adoc を参照。
+環境の使い方は link:docker/README.adoc[] を参照。
 
 == vagrant
 
