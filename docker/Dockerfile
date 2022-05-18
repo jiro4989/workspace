@@ -1,4 +1,4 @@
-FROM ubuntu22.04 as base
+FROM ubuntu:22.04 as base
 
 ARG WORKUSER=jiro4989
 
@@ -16,10 +16,11 @@ RUN curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add - \
 
 RUN apt-get update -yqq \
  && apt-get install -y \
-    fish \
     ca-certificates \
     ctop \
     curl \
+    docker.io \
+    fish \
     git \
     htop \
     lazygit \
@@ -31,14 +32,6 @@ RUN apt-get update -yqq \
     \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
-
-# デフォルトシェルをtmuxに変更
-RUN chsh -s "$(command -v tmux)" "${WORKUSER:-$USER}"
-
-# fishのプラグインを追加
-RUN fish -c "fisher install edc/bass"
-RUN fish -c "fisher install oh-my-fish/theme-clearance"
-RUN fish -c "fisher install fisherman/z"
 
 WORKDIR /usr/local/bin
 RUN wget -q "https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage" \
@@ -69,23 +62,31 @@ RUN git config --global user.name "${WORKUSER:-$USER}" \
  && git config --global ghq.root ~/src
 
 RUN ghq get -P \
- && jiro4989/sandbox \
- && jiro4989/scripts \
- && jiro4989/workspace \
- ;
+    jiro4989/sandbox \
+    jiro4989/scripts \
+    jiro4989/workspace \
+    ;
+
+# デフォルトシェルをtmuxに変更
+RUN chsh -s "$(command -v tmux)" "${WORKUSER:-$USER}"
+
+# fishのプラグインを追加
+RUN fish -c "fisher install edc/bass"
+RUN fish -c "fisher install oh-my-fish/theme-clearance"
+RUN fish -c "fisher install fisherman/z"
 
 FROM base as nim
 
 WORKDIR /tmp
 
-RUN wget https://nim-lang.org/choosenim/init.sh -sSf \
+RUN wget -q https://nim-lang.org/choosenim/init.sh \
  && bash init.sh -y
 
 RUN ghq get -P \
- && jiro4989/faker \
- && jiro4989/nimjson \
- && jiro4989/websh \
- ;
+    jiro4989/faker \
+    jiro4989/nimjson \
+    jiro4989/websh \
+    ;
 
 FROM base as go
 
@@ -99,8 +100,8 @@ RUN go install golang.org/x/tools/gopls@latest \
  && go install golang.org/x/tools/cmd/goimports@latest
 
 RUN ghq get -P \
- && jiro4989/textimg \
- ;
+    jiro4989/textimg \
+    ;
 
 FROM base as java
 
@@ -147,11 +148,11 @@ RUN <<EOS
 EOS
 
 RUN ghq get -P \
- && jiro4989/TKoolFacetileMaker2 \
- && jiro4989/TKoolImageTileEditor \
- && jiro4989/TKoolCharacterAnimationSimulator \
- && jiro4989/MVTextEditor \
- ;
+    jiro4989/TKoolFacetileMaker2 \
+    jiro4989/TKoolImageTileEditor \
+    jiro4989/TKoolCharacterAnimationSimulator \
+    jiro4989/MVTextEditor \
+    ;
 
 FROM base as node
 
