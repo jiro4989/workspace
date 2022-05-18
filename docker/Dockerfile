@@ -1,6 +1,8 @@
 FROM ubuntu:22.04 as base
 
-ARG WORKUSER=jiro4989
+ARG WORKUSER
+ARG LOCAL_UID
+ARG LOCAL_GID
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV SHFMT_VERSION=3.0.1
@@ -48,7 +50,7 @@ RUN wget -q https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGI
  && install -m 0755 ./lazygit /usr/local/bin/
 
 # ユーザを作成
-RUN useradd -m -d "/home/${WORKUSER}" -s "$(command -v tmux)" "${WORKUSER}"
+RUN useradd -m --uid ${LOCAL_UID} --gid ${LOCAL_GID} -d "/home/${WORKUSER}" -s "$(command -v tmux)" "${WORKUSER}"
 USER ${WORKUSER}
 ENV HOME /home/${WORKUSER}
 
