@@ -18,7 +18,6 @@ RUN apt-get update -yqq \
     fish \
     git \
     htop \
-    lazygit \
     shellcheck \
     tmux \
     unzip \
