@@ -24,7 +24,7 @@ RUN apt-get update -yqq \
     git \
     htop \
     language-pack-ja \
-    node \
+    nodejs \
     shellcheck \
     software-properties-common \
     sudo \
