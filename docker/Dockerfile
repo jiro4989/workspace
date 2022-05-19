@@ -58,11 +58,8 @@ RUN wget -q https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGI
  && install -m 0755 ./lazygit /usr/local/bin/
 
 # ユーザを作成
-RUN groupadd --gid ${LOCAL_GID} ${WORKUSER}
-RUN useradd -m -p ${PASSWORD} --uid ${LOCAL_UID} --gid ${LOCAL_GID} -d "/home/${WORKUSER}" -s "$(command -v tmux)" "${WORKUSER}"
-RUN gpasswd -a ${WORKUSER} docker
-RUN echo "%${WORKUSER}    ALL=(ALL)   NOPASSWD:    ALL" >> /etc/sudoers.d/${WORKUSER} \
- && chmod 0440 /etc/sudoers.d/${WORKUSER}
+ADD ./script/setup_user.sh /tmp/setup_user.sh
+RUN bash /tmp/setup_user.sh
 USER ${WORKUSER}
 ENV HOME /home/${WORKUSER}
 
