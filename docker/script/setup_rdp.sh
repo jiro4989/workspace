@@ -2,7 +2,6 @@
 
 set -eu
 
-cp /etc/xrdp/xrdp.ini /etc/xrdp/xrdp.ini.bak
 sed -i \
   -e 's/3389/3390/g' \
   -e 's/max_bpp=32/#max_bpp=32\nmax_bpp=128/g' \
@@ -10,7 +9,6 @@ sed -i \
   /etc/xrdp/xrdp.ini
 echo xfce4-session > ~/.xsession
 
-cp /etc/xrdp/startwm.sh /etc/xrdp/startwm.sh.bak
 sed -i \
   -e 's_^test -x /etc/X11/Xsession.*_# &_' \
   -e 's_^exec /bin/sh /etc/X11/Xsession.*_# &_' \

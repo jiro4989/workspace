@@ -131,6 +131,8 @@ WORKDIR ${HOME}
 
 FROM base as java
 
+USER root
+
 RUN add-apt-repository -y ppa:cwchien/gradle
 
 RUN apt-get update -yqq \
@@ -158,6 +160,8 @@ RUN ln -sfn /opt/java/$DIR/ /opt/java/current
 # GUI環境構築のためにRDPをセットアップする
 ADD ./script/setup_rdp.sh /tmp/setup_rdp.sh
 RUN bash /tmp/setup_rdp.sh
+
+USER ${WORKUSER}
 
 RUN ghq get -P \
     jiro4989/TKoolFacetileMaker2 \
