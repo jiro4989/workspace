@@ -75,4 +75,4 @@ endif
 
 .PHONY: prune
 prune:
-	docker images prune -f
+	docker image prune -f
