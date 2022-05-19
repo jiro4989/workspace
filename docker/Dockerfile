@@ -131,7 +131,7 @@ WORKDIR ${HOME}
 
 FROM base as java
 
-RUN add-apt-repository -y ppa:cwchien/gradle \
+RUN add-apt-repository -y ppa:cwchien/gradle
 
 RUN apt-get update -yqq \
  && apt-get install -y \
