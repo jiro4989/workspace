@@ -9,6 +9,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV SHFMT_VERSION=3.0.1
 ENV DIRENV_VERSION=2.21.3
 ENV RELMA_VERSION=1.4.0
+ENV NODE_VERSION=18.x
 ENV LAZYGIT_VERSION=0.34
 ENV LANG="ja_JP.UTF-8"
 ENV LANGUAGE="ja_JP:ja"
@@ -25,7 +26,6 @@ RUN apt-get update -yqq \
     git \
     htop \
     language-pack-ja \
-    nodejs \
     shellcheck \
     software-properties-common \
     sudo \
@@ -34,6 +34,8 @@ RUN apt-get update -yqq \
     vim \
     wget \
     \
+ && curl -fsSL https://deb.nodesource.com/setup_${NODE_VERSION} | bash - \
+ && apt-get install -y nodejs \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
