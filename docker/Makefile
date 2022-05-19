@@ -1,6 +1,5 @@
 IMAGE_PREFIX := workspace
 OPTS := \
-	--network host \
 	--group-add $(shell awk -F : '$$1 == "docker"{ print $$3 }' /etc/group) \
 	--mount type=bind,src=$(HOME)/.netrc,dst=$(HOME)/.netrc,ro \
 	--mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock \
@@ -26,6 +25,7 @@ build:
 		--build-arg WORKUSER=$(USER) \
 		--build-arg LOCAL_UID=$(shell id -u) \
 		--build-arg LOCAL_GID=$(shell id -g) \
+		--build-arg PASSWORD=$(PASSWORD) \
 		-t $(IMAGE_PREFIX)_$(TARGET) \
 		--target $(TARGET) \
 		.
@@ -37,6 +37,9 @@ ifeq ($(shell docker images -qa $(IMAGE_PREFIX)_$(TARGET)),)
 	make build
 endif
 ifeq ($(shell docker ps -aqf name=$(IMAGE_PREFIX)_$(TARGET)),)
+ifeq ($(TARGET),java)
+	$(eval OPTS := $(OPTS) -p 3390:3390)
+endif
 	# 停止済みのDockerプロセスが存在しないときは新規に起動する
 	docker run \
 		$(OPTS) \

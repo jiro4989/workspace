@@ -3,6 +3,7 @@ FROM ubuntu:22.04 as base
 ARG WORKUSER
 ARG LOCAL_UID
 ARG LOCAL_GID
+ARG PASSWORD
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV SHFMT_VERSION=3.0.1
@@ -58,7 +59,7 @@ RUN wget -q https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGI
 
 # ユーザを作成
 RUN groupadd --gid ${LOCAL_GID} ${WORKUSER}
-RUN useradd -m --uid ${LOCAL_UID} --gid ${LOCAL_GID} -d "/home/${WORKUSER}" -s "$(command -v tmux)" "${WORKUSER}"
+RUN useradd -m -p ${PASSWORD} --uid ${LOCAL_UID} --gid ${LOCAL_GID} -d "/home/${WORKUSER}" -s "$(command -v tmux)" "${WORKUSER}"
 RUN gpasswd -a ${WORKUSER} docker
 RUN echo "%${WORKUSER}    ALL=(ALL)   NOPASSWD:    ALL" >> /etc/sudoers.d/${WORKUSER} \
  && chmod 0440 /etc/sudoers.d/${WORKUSER}
