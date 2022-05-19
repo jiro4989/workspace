@@ -9,6 +9,10 @@ ENV SHFMT_VERSION=3.0.1
 ENV DIRENV_VERSION=2.21.3
 ENV RELMA_VERSION=1.4.0
 ENV LAZYGIT_VERSION=0.34
+ENV LANG="ja_JP.UTF-8"
+ENV LANGUAGE="ja_JP:ja"
+ENV LC_ALL="ja_JP.UTF-8"
+ENV TZ="JST-9"
 
 RUN apt-get update -yqq \
  && apt-get install -y \
@@ -19,8 +23,11 @@ RUN apt-get update -yqq \
     fish \
     git \
     htop \
+    language-pack-ja \
+    node \
     shellcheck \
     software-properties-common \
+    sudo \
     tmux \
     unzip \
     vim \
@@ -53,6 +60,8 @@ RUN wget -q https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGI
 RUN groupadd --gid ${LOCAL_GID} ${WORKUSER}
 RUN useradd -m --uid ${LOCAL_UID} --gid ${LOCAL_GID} -d "/home/${WORKUSER}" -s "$(command -v tmux)" "${WORKUSER}"
 RUN gpasswd -a ${WORKUSER} docker
+RUN echo "%${WORKUSER}    ALL=(ALL)   NOPASSWD:    ALL" >> /etc/sudoers.d/${WORKUSER} \
+ && chmod 0440 /etc/sudoers.d/${WORKUSER}
 USER ${WORKUSER}
 ENV HOME /home/${WORKUSER}
 
@@ -106,14 +115,19 @@ ENV GO_VERSION=1.18.2
 ENV PATH=${PATH}:/usr/local/go/bin
 
 WORKDIR /usr/local
+USER root
 RUN wget -q https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz \
- && tar xzf go*.linux-amd64.tar.gz
+ && tar xf go*.linux-amd64.tar.gz
+
+USER ${WORKUSER}
 RUN go install golang.org/x/tools/gopls@latest \
  && go install golang.org/x/tools/cmd/goimports@latest
 
 RUN ghq get -P \
     jiro4989/textimg \
     ;
+
+WORKDIR ${HOME}
 
 FROM base as java
 
