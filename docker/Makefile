@@ -14,6 +14,7 @@ help:
 	@echo "    make start TARGET=<target>   ... コンテナを立ち上げる。立ち上げるのに使うイメージが存在しないときはビルドもする。"
 	@echo "    make stop  [TARGET=<target>] ... コンテナを停止する。TARGETを省略したらすべて停止する。"
 	@echo "    make clean [TARGET=<target>] ... コンテナを削除する。TARGETを省略したらすべて削除する。"
+	@echo "    make purne                   ... イメージをpruneする。"
 	@echo ""
 	@echo "targets:"
 	@awk '/FROM/{print $$4}' Dockerfile | sed -E 's/^/    /'
@@ -67,3 +68,7 @@ else
 	# ターゲット指定がある場合は1つだけ削除する
 	docker rm -f $(IMAGE_PREFIX)_$(TARGET)
 endif
+
+.PHONY: prune
+prune:
+	docker images prune -f
