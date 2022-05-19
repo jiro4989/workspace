@@ -38,7 +38,7 @@ ifeq ($(shell docker images -qa $(IMAGE_PREFIX)_$(TARGET)),)
 endif
 ifeq ($(shell docker ps -aqf name=$(IMAGE_PREFIX)_$(TARGET)),)
 ifeq ($(TARGET),java)
-	$(eval OPTS := $(OPTS) -p 3390:3390)
+	$(eval OPTS := $(OPTS) -p 3350:3350 -p 3390:3390)
 endif
 	# 停止済みのDockerプロセスが存在しないときは新規に起動する
 	docker run \
