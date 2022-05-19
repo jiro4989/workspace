@@ -1,5 +1,6 @@
 IMAGE_PREFIX := workspace
 OPTS := \
+	--network host \
 	--group-add $(shell awk -F : '$$1 == "docker"{ print $$3 }' /etc/group) \
 	--mount type=bind,src=$(HOME)/.netrc,dst=$(HOME)/.netrc,ro \
 	--mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock \
@@ -38,8 +39,8 @@ endif
 ifeq ($(shell docker ps -aqf name=$(IMAGE_PREFIX)_$(TARGET)),)
 	# 停止済みのDockerプロセスが存在しないときは新規に起動する
 	docker run \
-		--name $(IMAGE_PREFIX)_$(TARGET) \
 		$(OPTS) \
+		--name $(IMAGE_PREFIX)_$(TARGET) \
 		-it $(IMAGE_PREFIX)_$(TARGET)
 else
 	# 停止済みのDockerプロセスが存在したら起動してアクセスする
