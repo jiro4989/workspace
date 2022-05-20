@@ -170,6 +170,8 @@ RUN ghq get -P \
     jiro4989/MVTextEditor \
     ;
 
+WORKDIR ${HOME}
+
 FROM base as node
 
 RUN apt-get update -yqq \
