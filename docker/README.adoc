@@ -27,6 +27,20 @@ Dockerfileはマルチステージ構成にしている。
 
 == 使い方
 
+=== 環境変数の設定
+
+コンテナ内に作成するユーザ用にパスワードを .envrc に設定する。
+環境変数を読み込むのには https://github.com/direnv/direnv[direnv] を使用する。
+
+以下のコマンドを実行し、環境変数の値を任意の値に書き換える。
+
+[source,bash]
+----
+cp .envrc.sample .envrc
+vim .envrc
+direnv allow
+----
+
 === ヘルプ出力
 
 [source,bash]
