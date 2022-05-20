@@ -174,16 +174,12 @@ WORKDIR ${HOME}
 
 FROM base as node
 
-RUN apt-get update -yqq \
- && apt-get install -y \
-    ca-certificates \
-    npm \
-    \
- && apt-get clean \
- && rm -rf /var/lib/apt/lists/*
-
+WORKDIR /tmp
+USER ${WORKUSER}
+ENV PATH=${HOME}/.nodenv/bin:${HOME}/.nodenv/shims:${PATH}
 RUN wget -q https://raw.githubusercontent.com/nodenv/nodenv-installer/master/bin/nodenv-installer \
  && bash ./nodenv-installer
+WORKDIR ${HOME}
 
 FROM base as infra
 
