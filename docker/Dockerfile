@@ -151,11 +151,11 @@ WORKDIR /tmp
 RUN wget -q "https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.1%2B12/OpenJDK17U-jdk_x64_linux_hotspot_17.0.1_12.tar.gz" \
  && tar xf OpenJDK17U-jdk_x64_linux_hotspot_17.0.1_12.tar.gz
 
-ENV DIR=jdk-17.0.1+12
+ARG DIR=jdk-17.0.1+12
 
 RUN mkdir -p /opt/java
-RUN mv $DIR/ /opt/java/
-RUN ln -sfn /opt/java/$DIR/ /opt/java/current
+RUN mv "$DIR/" /opt/java/
+RUN ln -sfn "/opt/java/$DIR/" /opt/java/current
 
 # GUI環境構築のためにRDPをセットアップする
 ADD ./script/setup_rdp.sh /tmp/setup_rdp.sh
