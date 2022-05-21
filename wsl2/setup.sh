@@ -2,9 +2,9 @@
 
 set -eux
 
-apt-get update -yqq
-apt-get upgrade -yqq
-apt-get install -yqq \
+sudo apt-get update -yqq
+sudo apt-get upgrade -yqq
+sudo apt-get install -yqq \
   ca-certificates \
   wget \
   git
