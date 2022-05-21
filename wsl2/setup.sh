@@ -9,6 +9,7 @@ sudo apt-get install -yqq \
   docker.io \
   wget \
   git
+sudo usermod -a -G docker jiro4989
 
 cd ~
 if [ ! -d workspace ]; then
