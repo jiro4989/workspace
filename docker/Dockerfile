@@ -1,4 +1,6 @@
-FROM ubuntu:22.04 as base
+ARG UBUNTU_VERSION=22.04
+
+FROM ubuntu:${UBUNTU_VERSION} as base
 
 ARG WORKUSER
 ARG LOCAL_UID
@@ -98,6 +100,15 @@ ENTRYPOINT ["tmux"]
 
 FROM base as nim
 
+USER root
+RUN apt-get update -yqq \
+ && apt-get install -y \
+    build-essential \
+    \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
+
+USER ${WORKUSER}
 WORKDIR /tmp
 
 RUN wget -q https://nim-lang.org/choosenim/init.sh \

@@ -4,6 +4,11 @@ OPTS := \
 	--mount type=bind,src=$(HOME)/.netrc,dst=$(HOME)/.netrc,ro \
 	--mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock \
 	--mount type=bind,src=$(HOME)/.local/share,dst=$(HOME)/.local/share
+BUILD_ARG := \
+	--build-arg WORKUSER=$(USER) \
+	--build-arg LOCAL_UID=$(shell id -u) \
+	--build-arg LOCAL_GID=$(shell id -g) \
+	--build-arg PASSWORD=$(PASSWORD)
 
 .PHONY: help
 help:
@@ -21,11 +26,12 @@ help:
 
 .PHONY: build
 build:
+ifeq ($(TARGET),nim)
+	# nimのときだけUbuntuのバージョンをすげ替える
+	$(eval BUILD_ARG := $(BUILD_ARG) --build-arg UBUNTU_VERSION=20.04)
+endif
 	docker build \
-		--build-arg WORKUSER=$(USER) \
-		--build-arg LOCAL_UID=$(shell id -u) \
-		--build-arg LOCAL_GID=$(shell id -g) \
-		--build-arg PASSWORD=$(PASSWORD) \
+		$(BUILD_ARG) \
 		-t $(IMAGE_PREFIX)_$(TARGET) \
 		--target $(TARGET) \
 		.
