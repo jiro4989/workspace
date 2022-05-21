@@ -19,6 +19,7 @@ ENV LC_ALL="ja_JP.UTF-8"
 ENV TZ="JST-9"
 
 RUN apt-get update -yqq \
+ && apt-get upgrade -y \
  && apt-get install -y \
     ca-certificates \
     ctop \
@@ -102,6 +103,7 @@ FROM base as nim
 
 USER root
 RUN apt-get update -yqq \
+ && apt-get upgrade -y \
  && apt-get install -y \
     build-essential \
     \
@@ -147,6 +149,7 @@ USER root
 RUN add-apt-repository -y ppa:cwchien/gradle
 
 RUN apt-get update -yqq \
+ && apt-get upgrade -y \
  && apt-get install -y \
     ca-certificates \
     gradle \
@@ -198,10 +201,9 @@ RUN curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add - \
  && apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
 
 RUN apt-get update -yqq \
+ && apt-get upgrade -y \
  && apt-get install -y \
     ca-certificates \
-    python3 \
-    python3-pip \
     terraform-ls \
     \
  && apt-get clean \
