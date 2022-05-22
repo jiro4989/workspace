@@ -15,8 +15,9 @@ cd /tmp
 wget https://raw.githubusercontent.com/jiro4989/workspace/master/wsl2/setup.sh
 bash setup.sh
 cd ~/workspace/docker
-make start TARGET=go
 ----
+
+あとは docker ディレクトリのREADMEに従って環境を立ち上げる。
 
 == ディレクトリ
 
