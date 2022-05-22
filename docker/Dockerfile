@@ -195,6 +195,11 @@ RUN wget -q https://raw.githubusercontent.com/nodenv/nodenv-installer/master/bin
  && bash ./nodenv-installer
 WORKDIR ${HOME}
 
+RUN ghq get -P \
+    jiro4989/setup-nim-action \
+    jiro4989/jira_issue_url_generator \
+    ;
+
 FROM base as infra
 
 USER root
