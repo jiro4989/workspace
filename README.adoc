@@ -14,6 +14,15 @@ iptables-lagecyに切り替える必要がある。
 cd /tmp
 wget https://raw.githubusercontent.com/jiro4989/workspace/master/wsl2/setup.sh
 bash setup.sh
+exit
+----
+
+一度Ubuntuを抜けて入り直す。
+
+入り直したら以下のコマンドで作業ディレクトリに移動する。
+
+[source,bash]
+----
 cd ~/workspace/docker
 ----
 
