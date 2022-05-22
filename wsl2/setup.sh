@@ -6,8 +6,12 @@ sudo apt-get update -yqq
 sudo apt-get upgrade -yqq
 sudo apt-get install -yqq \
   ca-certificates \
+  direnv \
   wget \
   git
+
+# Setup direnv
+echo 'eval "$(direnv hook bash)"' >> ~/.bashrc
 
 # 作業環境リポジトリを取得
 cd ~
