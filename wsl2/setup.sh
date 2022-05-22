@@ -43,7 +43,6 @@ command="service docker start"
 EOS
 
 # docker daemonを起動する
-sudo service docker status
 sudo service docker start
 sudo service docker status
 sleep 1
