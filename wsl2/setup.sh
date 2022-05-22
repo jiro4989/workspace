@@ -49,4 +49,3 @@ sleep 1
 
 # 動作確認
 docker --version
-docker ps
