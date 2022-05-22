@@ -30,7 +30,7 @@ ifeq ($(TARGET),nim)
 	# nimのときだけUbuntuのバージョンをすげ替える
 	$(eval BUILD_ARG := $(BUILD_ARG) --build-arg UBUNTU_VERSION=20.04)
 endif
-	docker build \
+	DOCKER_BUILDKIT=1 docker build \
 		$(BUILD_ARG) \
 		-t $(IMAGE_PREFIX)_$(TARGET) \
 		--target $(TARGET) \
