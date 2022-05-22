@@ -4,13 +4,34 @@
 
 いつでも捨てて再構築できる開発環境を構築する。
 
-== docker
+== 使い方
+
+途中1箇所だけ手動入力を求められる。
+iptables-lagecyに切り替える必要がある。
+
+[source,bash]
+----
+cd /tmp
+wget https://raw.githubusercontent.com/jiro4989/workspace/master/wsl2/setup.sh
+bash setup.sh
+cd ~/workspace/docker
+make start TARGET=go
+----
+
+== ディレクトリ
+
+=== wsl2
+
+Windows 11のWSL2上で実行するスクリプトを管理する。
+初期化処理はここのスクリプトを実行する。
+
+=== docker
 
 開発環境をすべてdocker上に閉じ込めたもの。
 
 環境の使い方は https://github.com/jiro4989/workspace/tree/master/docker[docker/README.adoc] を参照。
 
-== vagrant
+=== vagrant
 
 以前はvagrantを使っていたけれど、こっちはもう使っていない。
 
