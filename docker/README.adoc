@@ -27,7 +27,9 @@ Dockerfileはマルチステージ構成にしている。
 
 == 使い方
 
-=== 環境変数の設定
+=== 事前準備
+
+==== 環境変数の設定
 
 コンテナ内に作成するユーザ用にパスワードを .envrc に設定する。
 環境変数を読み込むのには https://github.com/direnv/direnv[direnv] を使用する。
@@ -40,6 +42,15 @@ cp .envrc.sample .envrc
 vim .envrc
 direnv allow
 ----
+
+==== .netrc の準備
+
+コンテナ上でGitHubにPushとかできるようにするために .netrc ファイルにGitHubの
+PersonalAccessTokenを設定する。
+
+以下のパスにファイルを作成すること。
+
+* `~/.netrc`
 
 === ヘルプ出力
 
