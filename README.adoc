@@ -36,6 +36,11 @@ cd ~/workspace/docker
 
 == ディレクトリ
 
+=== windows
+
+Windowsホストに必要なツール郡をインストールする。
+また、WSL2周りの運用に使うスクリプトを管理する。
+
 === wsl2
 
 Windows 11のWSL2上で実行するスクリプトを管理する。
