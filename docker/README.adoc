@@ -55,7 +55,7 @@ make
 
 [source,bash]
 ----
-make start TARGET=base
+make start TARGET=go
 ----
 
 === 環境の停止
