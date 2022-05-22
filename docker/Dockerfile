@@ -127,8 +127,17 @@ FROM base as go
 ENV GO_VERSION=1.18.2
 ENV PATH=${PATH}:/usr/local/go/bin
 
-WORKDIR /usr/local
 USER root
+RUN apt-get update -yqq \
+ && apt-get upgrade -y \
+ && apt-get install -y \
+    ca-certificates \
+    gcc \
+    \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /usr/local
 RUN wget -q https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz \
  && tar xf go*.linux-amd64.tar.gz
 
