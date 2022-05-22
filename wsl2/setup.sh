@@ -14,6 +14,11 @@ sudo apt-get install -yqq \
 # Setup direnv
 echo 'eval "$(direnv hook bash)"' >> ~/.bashrc
 
+# 認証情報のコピー
+if [ -f /mnt/c/Users/jiro4989/.netrc ]; then
+  cp /mnt/c/Users/jiro4989/.netrc ~/.netrc
+fi
+
 # 作業環境リポジトリを取得
 cd ~
 if [ ! -d workspace ]; then
