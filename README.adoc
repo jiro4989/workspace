@@ -7,7 +7,7 @@
 == 前提条件
 
 * Windows 11 Home
-* WSL2
+* Ubuntu 22.04 on WSL2
 
 == 使い方
 
