@@ -36,6 +36,12 @@ sudo usermod -a -G docker jiro4989
 # iptables-legacy に切り替える (手動)
 sudo update-alternatives --config iptables
 
+# Ubuntu起動時にdockerサービスを起動する
+cat << EOS | sudo tee /etc/wsl.conf
+[boot]
+command="service docker start"
+EOS
+
 # docker daemonを起動する
 sudo service docker status
 sudo service docker start
