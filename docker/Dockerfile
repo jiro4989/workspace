@@ -17,6 +17,8 @@ ENV LANG="ja_JP.UTF-8"
 ENV LANGUAGE="ja_JP:ja"
 ENV LC_ALL="ja_JP.UTF-8"
 ENV TZ="JST-9"
+# tmux経由で256色描画できるようにする
+ENV TERM="xterm-256color"
 
 RUN apt-get update -yqq \
  && apt-get upgrade -y \
