@@ -3,7 +3,7 @@
 set -eu
 
 err() {
-  echo "$(date +%Y-%m-%d %H:%M:%S) [ERR] $*" >&2
+  echo "$(date +'%Y-%m-%d %H:%M:%S') [ERR] $*" >&2
 }
 
 check_envrc_param() {
