@@ -8,7 +8,8 @@ BUILD_ARG := \
 	--build-arg WORKUSER=$(USER) \
 	--build-arg LOCAL_UID=$(shell id -u) \
 	--build-arg LOCAL_GID=$(shell id -g) \
-	--build-arg PASSWORD=$(PASSWORD)
+	--build-arg PASSWORD=$(PASSWORD) \
+	--build-arg EMAIL=$(EMAIL)
 
 .PHONY: help
 help:
