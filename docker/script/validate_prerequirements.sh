@@ -2,12 +2,28 @@
 
 set -eu
 
+err() {
+  echo "$(date +%Y-%m-%d %H:%M:%S) [ERR] $*" >&2
+}
+
+check_envrc_param() {
+  param="$1"
+  local param
+  if grep "${param}=xxxxx" .envrc; then
+    err "初期値の${param}はNGです。変更してください"
+    exit 1
+  fi
+}
+
 if [ ! -f ~/.netrc ]; then
-  echo "[ERR] ~/.netrc を作成してください"
+  err "$HOME/.netrc を作成してください"
   exit 1
 fi
 
 if [ ! -f .envrc ]; then
-  echo "[ERR] .envrc を作成してください"
+  err ".envrc を作成してください"
   exit 1
 fi
+
+check_envrc_param PASSWORD
+check_envrc_param EMAIL

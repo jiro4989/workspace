@@ -82,7 +82,7 @@ ENV PATH=${PATH}:${HOME}/relma/bin
 
 # Setup git
 RUN git config --global user.name "${WORKUSER:-$USER}" \
- && git config --global user.email "${WORKUSER:-$USER}" \
+ && git config --global user.email "${EMAIL}" \
  && git config --global alias.preq pull-request \
  && git config --global alias.see browse \
  && git config --global ghq.root ~/src
