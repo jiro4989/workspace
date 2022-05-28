@@ -7,8 +7,8 @@ err() {
 }
 
 check_envrc_param() {
-  param="$1"
   local param
+  param="$1"
   if grep "${param}=xxxxx" .envrc; then
     err "初期値の${param}はNGです。変更してください"
     exit 1
