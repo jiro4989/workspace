@@ -58,3 +58,7 @@ Windows 11のWSL2上で実行するスクリプトを管理する。
 
 一応当時の環境構築手順とかは残してある。
 詳細は https://github.com/jiro4989/workspace/tree/master/vagrant[vagrant/README.adoc] を参照。
+
+== 関連
+
+* https://github.com/jiro4989/dotfiles
