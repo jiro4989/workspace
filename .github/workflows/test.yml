@@ -5,11 +5,11 @@ on:
   push:
     branches:
       - master
-    paths_ignore:
+    paths-ignore:
       - 'README.*'
       - 'LICENSE'
   pull_request:
-    paths_ignore:
+    paths-ignore:
       - 'README.*'
       - 'LICENSE'
 
