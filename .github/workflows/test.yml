@@ -1,0 +1,35 @@
+---
+name: test
+
+on:
+  push:
+    branches:
+      - master
+    paths_ignore:
+      - 'README*'
+      - 'LICENSE'
+  pull_request:
+    paths_ignore:
+      - 'README*'
+      - 'LICENSE'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: docker
+    strategy:
+      matrix:
+        target:
+          - 'go'
+          - 'nim'
+          - 'java'
+          - 'node'
+          - 'infra'
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .envrc
+        run: cp .envrc.sample .envrc
+      - name: Build docker image
+        run: make build TARGET=${{ matrix.target }} NO_VALIDATION=true
