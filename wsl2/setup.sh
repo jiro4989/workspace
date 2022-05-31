@@ -11,6 +11,8 @@ sudo apt-get install -yqq \
   wget \
   git
 
+mkdir -p ~/Downloads
+
 # Setup direnv
 echo 'eval "$(direnv hook bash)"' >> ~/.bashrc
 
