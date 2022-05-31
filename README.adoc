@@ -12,7 +12,9 @@
 
 == 使い方
 
-途中1箇所だけ手動入力を求められる。
+Ubuntu 22.04環境をWSL2で立ち上げて、以下のコマンドを実行する。
+
+注意点として、途中1箇所だけ手動入力を求められる。
 iptables-lagecyに切り替える必要がある。
 
 [source,bash]
@@ -21,6 +23,13 @@ cd /tmp
 wget https://raw.githubusercontent.com/jiro4989/workspace/master/wsl2/setup.sh
 bash setup.sh
 exit
+----
+
+ワンライナーでやるならば以下。
+
+[source,bash]
+----
+wget -q -O- https://raw.githubusercontent.com/jiro4989/workspace/master/wsl2/setup.sh | bash
 ----
 
 一度Ubuntuを抜けて入り直す。
