@@ -125,6 +125,8 @@ RUN ghq get -P \
     jiro4989/websh \
     ;
 
+WORKDIR ${HOME}
+
 FROM base as go
 
 ENV GO_VERSION=1.18.2
