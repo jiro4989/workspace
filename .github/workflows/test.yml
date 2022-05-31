@@ -33,5 +33,6 @@ jobs:
         run: |
           cp .envrc.sample .envrc
           sed -Ei "s/=.+/=DummyP@sswOrd${RANDOM}/" .envrc
+          source .envrc
       - name: Build docker image
         run: make build TARGET=${{ matrix.target }} NO_VALIDATION=true
