@@ -59,6 +59,23 @@ PersonalAccessTokenを設定する。
 make
 ----
 
+=== ビルド
+
+単純にビルドする場合は以下。
+
+[source,bash]
+----
+make build
+----
+
+キャッシュを無視して強制的にビルドを実行する。
+`docker build --no-cache` を同じ。
+
+[source,bash]
+----
+make build NO_CACHE=true
+----
+
 === 環境の立ち上げ
 
 環境を立ち上げる。Dockerイメージがまだビルドされていなかったらビルドする。
