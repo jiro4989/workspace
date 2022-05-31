@@ -30,6 +30,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Setup .envrc
-        run: cp .envrc.sample .envrc
+        run: |
+          cp .envrc.sample .envrc
+          sed -Ei "s/=.+/=DummyP@sswOrd${RANDOM}/" .envrc
       - name: Build docker image
         run: make build TARGET=${{ matrix.target }} NO_VALIDATION=true
