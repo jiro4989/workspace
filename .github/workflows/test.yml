@@ -6,11 +6,11 @@ on:
     branches:
       - master
     paths_ignore:
-      - 'README*'
+      - 'README.*'
       - 'LICENSE'
   pull_request:
     paths_ignore:
-      - 'README*'
+      - 'README.*'
       - 'LICENSE'
 
 jobs:
