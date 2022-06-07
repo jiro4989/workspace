@@ -231,3 +231,4 @@ RUN apt-get update -yqq \
  && rm -rf /var/lib/apt/lists/*
 
 USER ${WORKUSER}
+RUN git config --global credential.helper 'store --file ~/.my-credentials'
