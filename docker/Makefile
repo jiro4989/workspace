@@ -7,6 +7,7 @@ OPTS := \
 	--mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock \
 	--mount type=bind,src=$(HOME)/.local/share,dst=$(HOME)/.local/share
 BUILD_ARG := \
+	--network host \
 	--build-arg WORKUSER=$(USER) \
 	--build-arg LOCAL_UID=$(shell id -u) \
 	--build-arg LOCAL_GID=$(shell id -g) \
