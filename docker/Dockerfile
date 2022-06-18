@@ -153,6 +153,8 @@ RUN go install golang.org/x/tools/gopls@latest \
 
 RUN ghq get -P \
     jiro4989/textimg \
+    jiro4989/ojosama \
+    jiro4989/ojosama-web \
     ;
 
 WORKDIR ${HOME}
