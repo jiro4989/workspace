@@ -4,7 +4,7 @@ OPTS := \
 	-p 1323:1323 \
 	--group-add $(shell awk -F : '$$1 == "docker"{ print $$3 }' /etc/group) \
 	--mount type=bind,src=$(HOME)/Downloads,dst=$(HOME)/Downloads \
-	--mount type=bind,src=$(HOME)/.netrc,dst=$(HOME)/.netrc,ro \
+	--mount type=bind,src=$(HOME)/.netrc,dst=$(HOME)/.netrc \
 	--mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock \
 	--mount type=bind,src=$(HOME)/.local/share,dst=$(HOME)/.local/share
 BUILD_ARG := \
