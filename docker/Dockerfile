@@ -129,7 +129,7 @@ WORKDIR ${HOME}
 
 FROM base as go
 
-ENV GO_VERSION=1.18.2
+ENV GO_VERSION=1.19
 ENV PATH=${PATH}:/usr/local/go/bin
 
 USER root
