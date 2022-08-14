@@ -20,11 +20,13 @@ help:
 	@echo "docker環境を操作するタスクランナーです。"
 	@echo ""
 	@echo "tasks:"
-	@echo "    make build TARGET=<target>   ... イメージをビルドする。"
-	@echo "    make start TARGET=<target>   ... コンテナを立ち上げる。立ち上げるのに使うイメージが存在しないときはビルドもする。"
-	@echo "    make stop  [TARGET=<target>] ... コンテナを停止する。TARGETを省略したらすべて停止する。"
-	@echo "    make clean [TARGET=<target>] ... コンテナを削除する。TARGETを省略したらすべて削除する。"
-	@echo "    make prune                   ... イメージをpruneする。"
+	@echo "    make build TARGET=<target> [NO_CACHE=true] ... イメージをビルドする。NO_CACHEを有効にするとイメージがすでに存在する場合もビルドする。"
+	@echo "    make recreate TARGET=<target>              ... コンテナを停止して強制的にイメージをビルドし、起動する。"
+	@echo "                                                   特定コンテナのアップグレード時に使う想定。"
+	@echo "    make start TARGET=<target>                 ... コンテナを立ち上げる。立ち上げるのに使うイメージが存在しないときはビルドもする。"
+	@echo "    make stop  [TARGET=<target>]               ... コンテナを停止する。TARGETを省略したらすべて停止する。"
+	@echo "    make clean [TARGET=<target>]               ... コンテナを削除する。TARGETを省略したらすべて削除する。"
+	@echo "    make prune                                 ... イメージをpruneする。"
 	@echo ""
 	@echo "targets:"
 	@awk '/FROM/{print $$4}' Dockerfile | sed -E 's/^/    /'
@@ -94,3 +96,9 @@ endif
 .PHONY: prune
 prune:
 	docker image prune -f
+
+.PHONY: recreate
+recreate:
+	make clean
+	make build NO_CACHE=true
+	make start
