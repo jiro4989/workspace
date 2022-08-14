@@ -8,16 +8,10 @@ on:
     paths:
       - 'docker/**'
       - '.github/workflows/test_docker.yml'
-    paths-ignore:
-      - 'README.*'
-      - 'LICENSE'
   pull_request:
     paths:
       - 'docker/**'
       - '.github/workflows/test_docker.yml'
-    paths-ignore:
-      - 'README.*'
-      - 'LICENSE'
 
 jobs:
   build:
