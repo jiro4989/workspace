@@ -33,6 +33,7 @@ help:
 
 .PHONY: build
 build:
+	make validate_vars
 ifeq ($(NO_CACHE),true)
 	# nimのときだけUbuntuのバージョンをすげ替える
 	$(eval BUILD_ARG := $(BUILD_ARG) --no-cache)
@@ -99,6 +100,15 @@ prune:
 
 .PHONY: recreate
 recreate:
+	make validate_vars
 	make clean
 	make build NO_CACHE=true
 	make start
+
+.PHONY: validate_vars
+validate_vars:
+ifeq ($(TARGET),)
+	@echo "TARGET 変数が不足してます。TARGET=<target>を指定して再実行してください。"
+	@false
+endif
+	@true
