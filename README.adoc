@@ -61,7 +61,7 @@ Windows 11のWSL2上で実行するスクリプトを管理する。
 
 環境の使い方は https://github.com/jiro4989/workspace/tree/master/docker[docker/README.adoc] を参照。
 
-=== vagrant
+=== vagrant (DEPRECATED)
 
 以前はvagrantを使っていたけれど、こっちはもう使っていない。
 
