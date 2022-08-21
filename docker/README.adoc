@@ -104,7 +104,11 @@ make stop
 make clean
 ----
 
-== リモートデスクトップでJava環境につなぐ
+== GUI アプリの開発
+
+基本的に GUI アプリは全部 Java で作る。
+
+=== リモートデスクトップでJava環境につなぐ
 
 Javaのコンテナに入って以下のコマンドを実行する。
 
@@ -122,3 +126,16 @@ sudo /etc/init.d/xrdp start
 接続先は `localhost:3350` で、パスワードは `passwd` で設定した値。
 
 これでOK。
+
+=== ターミナルの起動
+
+リモートデスクトップ接続先のデフォルトブラウザを使おうとしてもエラーになる。
+`xterm` を指定して起動すると接続できる。
+
+`xterm` がインストールされていなければ、以下のコマンドでインストールする。
+
+[source,bash]
+----
+sudo apt update -yqq
+sudo apt install -yqq xterm
+----
