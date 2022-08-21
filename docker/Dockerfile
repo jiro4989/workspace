@@ -172,6 +172,7 @@ RUN apt-get update -yqq \
     gradle \
     xfce4 \
     xrdp \
+    xterm \
     xvfb \
     \
  && apt-get clean \
