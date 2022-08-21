@@ -139,3 +139,10 @@ sudo /etc/init.d/xrdp start
 sudo apt update -yqq
 sudo apt install -yqq xterm
 ----
+
+=== VSCodeでコンテナにつなぐ
+
+WSL2 上の docker 環境を使っているので、VSCode でリモートコンテナする場合は一工夫必要。
+まず VSCode で Remote WSL でつなぐ。
+Remote WSL で繋いでから Remote Container でつなぐ。
+以上。
