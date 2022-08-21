@@ -169,6 +169,7 @@ RUN apt-get update -yqq \
  && apt-get upgrade -y \
  && apt-get install -y \
     ca-certificates \
+    falkon \
     gradle \
     xfce4 \
     xrdp \
