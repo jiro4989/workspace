@@ -177,6 +177,10 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > /tmp/install_rus
 # coc-rls の依存ライブラリ
 RUN ${HOME}/.cargo/bin/rustup component add rls rust-analysis rust-src
 
+RUN ghq get -P \
+    jiro4989/suln \
+    ;
+
 FROM base as java
 
 USER root
