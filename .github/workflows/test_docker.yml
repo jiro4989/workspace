@@ -23,6 +23,7 @@ jobs:
       matrix:
         target:
           - 'go'
+          - 'rust'
           - 'nim'
           - 'java'
           - 'node'
