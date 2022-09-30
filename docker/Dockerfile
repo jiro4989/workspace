@@ -159,6 +159,8 @@ RUN ghq get -P \
 
 WORKDIR ${HOME}
 
+FROM base as rust
+
 FROM base as java
 
 USER root
