@@ -161,10 +161,21 @@ WORKDIR ${HOME}
 
 FROM base as rust
 
+RUN apt-get update -yqq \
+ && apt-get upgrade -y \
+ && apt-get install -y \
+    build-essential \
+    \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
+
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > /tmp/install_rust.sh \
  && chmod +x /tmp/install_rust.sh \
  && /tmp/install_rust.sh -y \
  && which ${HOME}/.cargo/bin/cargo
+
+# coc-rls の依存ライブラリ
+RUN ${HOME}/.cargo/bin/rustup component add rls rust-analysis rust-src
 
 FROM base as java
 
