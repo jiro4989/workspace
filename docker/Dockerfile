@@ -161,6 +161,11 @@ WORKDIR ${HOME}
 
 FROM base as rust
 
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > /tmp/install_rust.sh \
+ && chmod +x /tmp/install_rust.sh \
+ && /tmp/install_rust.sh -y \
+ && which ${HOME}/.cargo/bin/cargo
+
 FROM base as java
 
 USER root
