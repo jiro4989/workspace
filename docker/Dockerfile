@@ -161,6 +161,7 @@ WORKDIR ${HOME}
 
 FROM base as rust
 
+USER root
 RUN apt-get update -yqq \
  && apt-get upgrade -y \
  && apt-get install -y \
@@ -168,6 +169,7 @@ RUN apt-get update -yqq \
     \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
+USER ${WORKUSER}
 
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > /tmp/install_rust.sh \
  && chmod +x /tmp/install_rust.sh \
