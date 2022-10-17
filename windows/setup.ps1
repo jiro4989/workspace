@@ -8,9 +8,7 @@ scoop install 7zip
 scoop install vscode
 scoop install windows-terminal
 scoop install steam
-scoop install obs-studio # streeming capture software
 scoop install googlechrome
-scoop install wireshark
 scoop install vivaldi
 
 # Java
