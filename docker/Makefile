@@ -35,12 +35,7 @@ help:
 build:
 	make validate_vars
 ifeq ($(NO_CACHE),true)
-	# nimのときだけUbuntuのバージョンをすげ替える
 	$(eval BUILD_ARG := $(BUILD_ARG) --no-cache)
-endif
-ifeq ($(TARGET),nim)
-	# nimのときだけUbuntuのバージョンをすげ替える
-	$(eval BUILD_ARG := $(BUILD_ARG) --build-arg UBUNTU_VERSION=20.04)
 endif
 ifneq ($(NO_VALIDATION),true)
 	./script/validate_prerequirements.sh
