@@ -9,6 +9,7 @@ scoop install windows-terminal
 scoop install steam
 scoop install googlechrome
 scoop install vivaldi
+scoop install obsidian
 
 # Java
 scoop bucket add java
