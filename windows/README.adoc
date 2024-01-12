@@ -11,11 +11,13 @@ Windowsホストの環境構築スクリプト。
 == 使い方
 
 Windowsホスト用のツール郡をインストールする。
-以下のコマンドを実行する。
+
+最新の [winget-cli](https://github.com/microsoft/winget-cli/releases) をダウンロードして、以下のコマンドを実行する。
 
 [source,ps1]
 ----
-Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
+Add-AppxPackage -Path 落としてきたバイナリ
+winget -v
 setup.ps1
 ----
 
