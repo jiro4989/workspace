@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sudo apt update -y
-sudo apt install -y gcc make tmux fish
+sudo apt install -y gcc make tmux fish zip
 # for nvim
 sudo apt install -y libfuse2
 
@@ -15,6 +15,11 @@ cd $HOME/workspace
 git clone https://github.com/jiro4989/dotfiles
 cd dotfiles
 ./setup.sh
+
+wget https://github.com/x-motemen/ghq/releases/download/v1.4.2/ghq_linux_amd64.zip
+unzip ghq_linux_amd64.zip
+sudo install -m 0755 ghq_linux_amd64/ghq /usr/local/bin/ghq
+rm -rf ghq_linux_amd64 ghq_linux_amd64.zip
 
 NODENV_DIR="$HOME/.nodenv"
 git clone https://github.com/nodenv/nodenv.git "$NODENV_DIR"
