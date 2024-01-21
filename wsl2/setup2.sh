@@ -28,6 +28,12 @@ mkdir -p "$NODENV_DIR"/plugins
 git clone https://github.com/nodenv/node-build.git "$NODENV_DIR"/plugins/node-build
 PREFIX=/usr/local "$NODENV_DIR"/plugins/node-build/install.sh
 
+LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+tar xf lazygit.tar.gz lazygit
+sudo install -m 0755 lazygit /usr/local/bin
+rm lazygit.tar.gz lazygit
+
 fish -c 'curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source'
 fish -c "fisher install jorgebucaran/fisher"
 fish -c "fisher install edc/bass"
