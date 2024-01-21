@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sudo apt update -y
-sudo apt install -y gcc make tmux fish zip
+sudo apt install -y gcc make tmux fish zip fzf
 # for nvim
 sudo apt install -y libfuse2
 
