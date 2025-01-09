@@ -7,12 +7,12 @@
 == 前提条件
 
 * Windows 11 Home
-* Ubuntu 22.04 on WSL2
+* Ubuntu 24.04 on WSL2
 ** https://scrapbox.io/jiro4989/WSL2%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB[WSL2のインストール]を参考にWSL2環境を構築する
 
 == 使い方
 
-Ubuntu 22.04環境をWSL2で立ち上げて、以下のコマンドを実行する。
+Ubuntu 24.04 環境をWSL2で立ち上げて、以下のコマンドを実行する。
 
 注意点として、途中1箇所だけ手動入力を求められる。
 iptables-lagecyに切り替える必要がある。
