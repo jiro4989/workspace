@@ -49,6 +49,15 @@ nodenv global <version>
 node --version
 ----
 
+最後に fisher のセットアップ
+
+[source,bash]
+----
+cd
+cd workspace/workspace/wsl2
+./setup_fisher.fish
+----
+
 == ディレクトリ
 
 === windows
