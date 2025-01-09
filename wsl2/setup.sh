@@ -36,9 +36,3 @@ curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/lates
 tar xf lazygit.tar.gz lazygit
 sudo install -m 0755 lazygit /usr/local/bin
 rm lazygit.tar.gz lazygit
-
-fish -c 'curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source'
-fish -c "fisher install jorgebucaran/fisher"
-fish -c "fisher install edc/bass"
-fish -c "fisher install oh-my-fish/theme-clearance"
-fish -c "fisher install fisherman/z"
