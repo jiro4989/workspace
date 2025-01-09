@@ -34,15 +34,6 @@ wget -q -O- https://raw.githubusercontent.com/jiro4989/workspace/master/wsl2/set
 
 一度Ubuntuを抜けて入り直す。
 
-入り直したら以下のコマンドで作業ディレクトリに移動する。
-
-[source,bash]
-----
-cd ~/workspace/docker
-----
-
-あとは docker ディレクトリのREADMEに従って環境を立ち上げる。
-
 == ディレクトリ
 
 === windows
@@ -54,12 +45,14 @@ Windowsホストに必要なツール郡をインストールする。
 
 Windows 11のWSL2上で実行するスクリプトを管理する。
 初期化処理はここのスクリプトを実行する。
+2025/01/09 現在のメインな環境。
 
 === docker
 
 開発環境をすべてdocker上に閉じ込めたもの。
 
 環境の使い方は https://github.com/jiro4989/workspace/tree/master/docker[docker/README.adoc] を参照。
+2025/01/09 現在はほぼ使っていないが、docker が使いたくなった場合のために一応残している。
 
 === vagrant (DEPRECATED)
 
