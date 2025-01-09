@@ -1,63 +1,41 @@
 #!/bin/bash
 
-set -eux
+sudo apt update -y
+sudo apt install -y gcc make tmux fish zip fzf
+# for nvim
+sudo apt install -y libfuse2
 
-sudo apt-get update -yqq
-sudo apt-get upgrade -yqq
-sudo apt-get install -yqq \
-  ca-certificates \
-  make \
-  direnv \
-  wget \
-  git
+chsh -s "$(which tmux)"
 
-mkdir -p ~/Downloads
+wget https://github.com/neovim/neovim/releases/download/v0.9.5/nvim.appimage
+chmod +x nvim.appimage
+sudo mv nvim.appimage /usr/local/bin/nvim
 
-# Setup direnv
-echo 'eval "$(direnv hook bash)"' >> ~/.bashrc
+cd $HOME/workspace
+git clone https://github.com/jiro4989/dotfiles
+cd dotfiles
+./setup.sh
 
-# 認証情報のコピー
-if [ -f /mnt/c/Users/jiro4989/.netrc ]; then
-  cp /mnt/c/Users/jiro4989/.netrc ~/.netrc
-fi
+wget https://github.com/x-motemen/ghq/releases/download/v1.4.2/ghq_linux_amd64.zip
+unzip ghq_linux_amd64.zip
+sudo install -m 0755 ghq_linux_amd64/ghq /usr/local/bin/ghq
+rm -rf ghq_linux_amd64 ghq_linux_amd64.zip
 
-# 作業環境リポジトリを取得
-cd ~
-if [ ! -d workspace ]; then
-  git clone https://github.com/jiro4989/workspace
-fi
+NODENV_DIR="$HOME/.nodenv"
+git clone https://github.com/nodenv/nodenv.git "$NODENV_DIR"
+cd "$NODENV_DIR" && src/configure && make -C src
+mkdir -p "$NODENV_DIR"/plugins
+git clone https://github.com/nodenv/node-build.git "$NODENV_DIR"/plugins/node-build
+PREFIX=/usr/local "$NODENV_DIR"/plugins/node-build/install.sh
 
-# 古いdockerを削除
-sudo apt-get remove -y docker || true
-sudo apt-get remove -y docker.io containerd runc || true
-sudo apt-get remove -y containerd runc || true
-sudo apt-get remove -y runc || true
+LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+tar xf lazygit.tar.gz lazygit
+sudo install -m 0755 lazygit /usr/local/bin
+rm lazygit.tar.gz lazygit
 
-sudo apt-get update -y
-sudo apt-get install -y ca-certificates curl gnupg lsb-release
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt-get update -y
-sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
-
-# sudoなしでdockerコマンドを実行できるようにする
-sudo usermod -a -G docker jiro4989
-
-# iptables-legacy に切り替える (手動)
-sudo update-alternatives --config iptables
-
-# Ubuntu起動時にdockerサービスを起動する
-cat << EOS | sudo tee /etc/wsl.conf
-[boot]
-command="service docker start"
-EOS
-
-# docker daemonを起動する
-sudo service docker start
-sudo service docker status
-sleep 1
-
-# 動作確認
-docker --version
+fish -c 'curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source'
+fish -c "fisher install jorgebucaran/fisher"
+fish -c "fisher install edc/bass"
+fish -c "fisher install oh-my-fish/theme-clearance"
+fish -c "fisher install fisherman/z"
