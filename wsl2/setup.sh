@@ -11,7 +11,10 @@ wget https://github.com/neovim/neovim/releases/download/v0.9.5/nvim.appimage
 chmod +x nvim.appimage
 sudo mv nvim.appimage /usr/local/bin/nvim
 
-cd $HOME/workspace
+cd $HOME
+mkdir -p workspace
+cd workspace
+git clone https://github.com/jiro4989/workspace
 git clone https://github.com/jiro4989/dotfiles
 cd dotfiles
 ./setup.sh
