@@ -34,6 +34,21 @@ wget -q -O- https://raw.githubusercontent.com/jiro4989/workspace/master/wsl2/set
 
 一度Ubuntuを抜けて入り直す。
 
+nvim で node が必要なので node をセットアップする。
+
+[source,bash]
+----
+# バージョン確認
+nodenv install -l
+
+# グローバルインストール
+nodenv install <version>
+nodenv global <version>
+
+# node が使えることを確認
+node --version
+----
+
 == ディレクトリ
 
 === windows
