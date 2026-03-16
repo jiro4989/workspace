@@ -12,7 +12,7 @@ Windowsホストの環境構築スクリプト。
 
 Windowsホスト用のツール郡をインストールする。
 
-最新の [winget-cli](https://github.com/microsoft/winget-cli/releases) をダウンロードして、以下のコマンドを実行する。
+最新の https://github.com/microsoft/winget-cli/releases[winget-cli] をダウンロードして、以下のコマンドを実行する。
 
 [source,ps1]
 ----
