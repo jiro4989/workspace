@@ -7,12 +7,12 @@
 == 前提条件
 
 * Windows 11 Home
-* Ubuntu 22.04 on WSL2
+* Ubuntu 24.04 on WSL2
 ** https://scrapbox.io/jiro4989/WSL2%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB[WSL2のインストール]を参考にWSL2環境を構築する
 
 == 使い方
 
-Ubuntu 22.04環境をWSL2で立ち上げて、以下のコマンドを実行する。
+Ubuntu 24.04 環境をWSL2で立ち上げて、以下のコマンドを実行する。
 
 注意点として、途中1箇所だけ手動入力を求められる。
 iptables-lagecyに切り替える必要がある。
@@ -34,14 +34,29 @@ wget -q -O- https://raw.githubusercontent.com/jiro4989/workspace/master/wsl2/set
 
 一度Ubuntuを抜けて入り直す。
 
-入り直したら以下のコマンドで作業ディレクトリに移動する。
+nvim で node が必要なので node をセットアップする。
 
 [source,bash]
 ----
-cd ~/workspace/docker
+# バージョン確認
+nodenv install -l
+
+# グローバルインストール
+nodenv install <version>
+nodenv global <version>
+
+# node が使えることを確認
+node --version
 ----
 
-あとは docker ディレクトリのREADMEに従って環境を立ち上げる。
+最後に fisher のセットアップ
+
+[source,bash]
+----
+cd
+cd workspace/workspace/wsl2
+./setup_fisher.fish
+----
 
 == ディレクトリ
 
@@ -54,12 +69,14 @@ Windowsホストに必要なツール郡をインストールする。
 
 Windows 11のWSL2上で実行するスクリプトを管理する。
 初期化処理はここのスクリプトを実行する。
+2025/01/09 現在のメインな環境。
 
 === docker
 
 開発環境をすべてdocker上に閉じ込めたもの。
 
 環境の使い方は https://github.com/jiro4989/workspace/tree/master/docker[docker/README.adoc] を参照。
+2025/01/09 現在はほぼ使っていないが、docker が使いたくなった場合のために一応残している。
 
 === vagrant (DEPRECATED)
 
