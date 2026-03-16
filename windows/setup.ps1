@@ -5,3 +5,5 @@ winget install Valve.Steam
 winget install SlackTechnologies.Slack
 winget install Microsoft.WindowsTerminal
 winget install Microsoft.VisualStudioCode
+winget install Discord.Discord
+winget install Anysphere.Cursor
