@@ -7,9 +7,9 @@ sudo apt install -y libfuse2
 
 chsh -s "$(which tmux)"
 
-wget https://github.com/neovim/neovim/releases/download/v0.9.5/nvim.appimage
-chmod +x nvim.appimage
-sudo mv nvim.appimage /usr/local/bin/nvim
+wget https://github.com/neovim/neovim/releases/download/v0.12.2/nvim-linux-x86_64.appimage
+chmod +x nvim-linux-x86_64.appimage
+sudo mv nvim-linux-x86_64.appimage /usr/local/bin/nvim
 
 cd $HOME
 mkdir -p workspace
