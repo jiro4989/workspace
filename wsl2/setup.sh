@@ -36,3 +36,6 @@ curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/lates
 tar xf lazygit.tar.gz lazygit
 sudo install -m 0755 lazygit /usr/local/bin
 rm lazygit.tar.gz lazygit
+
+# deno
+curl -fsSL https://deno.land/install.sh | sh
