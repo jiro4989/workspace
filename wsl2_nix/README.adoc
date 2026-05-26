@@ -1,0 +1,32 @@
+= wsl2_nix
+:toc: left
+:sectnums:
+
+WSL2 上の Ubuntu 環境を Nix で構築する。
+
+== 手順
+
+=== Nix のインストール
+
+https://nixos.org/download/#nix-install-windows[公式の手順]にしたがって、
+インストールスクリプトを実行する。
+何回か入力を求められる。
+
+[source,powershell]
+----
+sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install) --daemon
+----
+
+シェルを再起動しないと Nix が有効にならないため、スクリプトが正常終了したら
+一度 Ubuntu から抜けて入りなおすこと。
+
+=== flake による環境構築
+
+[source,powershell]
+----
+cd ~
+mkdir -p workspace
+cd workspace
+git clone https://github.com/jiro4989/workspace
+cd workspace/wsl2_nix
+----
