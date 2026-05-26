@@ -14,6 +14,18 @@
 
 Ubuntu 24.04 環境をWSL2で立ち上げて、以下のコマンドを実行する。
 
+新規に Ubuntu 環境を構築する場合は、以下のコマンドを実行する。
+
+[source,powershell]
+----
+# インストール可能なリストを確認
+wsl --list --online
+
+# インストール
+wsl --install -d Ubuntu-26.04
+----
+
+
 注意点として、途中1箇所だけ手動入力を求められる。
 iptables-lagecyに切り替える必要がある。
 
