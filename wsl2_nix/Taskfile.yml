@@ -6,6 +6,8 @@ tasks:
     desc: '環境をセットアップする'
     cmds:
       - task: setup:git_config
+      - task: setup:dotfiles
+      - task: setup:fisher
 
   setup:git_config:
     desc: 'git config を設定する'
@@ -15,3 +17,29 @@ tasks:
     status:
       - git config user.email
       - git config user.name
+
+  setup:dotfiles:
+    desc: 'dotfiles をセットアップする'
+    cmds:
+      - task: setup:dotfiles_repo
+      - task: setup:dotfiles_config
+
+  setup:dotfiles_repo:
+    desc: 'dotfiles リポジトリを clone する'
+    dir: ../..
+    cmds:
+      - git clone https://github.com/jiro4989/dotfiles
+    status:
+      - test -d dotfiles
+
+  setup:dotfiles_config:
+    desc: 'dotfiles の設定をリンクする'
+    deps: [setup:dotfiles_repo]
+    dir: ../../dotfiles
+    cmds:
+      - ./setup.sh
+
+  setup:fisher:
+    desc: 'fisher をセットアップする'
+    cmds:
+      - fish setup_fisher.fish
