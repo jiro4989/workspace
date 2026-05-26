@@ -24,6 +24,7 @@ sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install) --daemon
 
 [source,shell]
 ----
+$ mkdir -p ~/.config/nix
 $ vi ~/.config/nix/nix.conf
 # または
 $ sudo vi /etc/nix/nix.conf
