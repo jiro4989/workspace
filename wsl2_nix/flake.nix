@@ -18,6 +18,7 @@
           buildInputs = [
             pkgs.git
             pkgs.go-task
+            pkgs.lazygit
           ];
 
           shellHook = ''
