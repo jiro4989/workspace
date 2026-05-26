@@ -16,6 +16,7 @@
       {
         devShells.default = pkgs.mkShell {
           buildInputs = [
+            pkgs.bash-language-server
             pkgs.fish
             pkgs.ghq
             pkgs.git
