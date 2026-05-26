@@ -11,11 +11,10 @@
     utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs { inherit system; };
-        Cambrian = "test";
       in
       {
         devShells.default = pkgs.mkShell {
-          buildInputs = [
+          packages = [
             pkgs.bash-language-server
             pkgs.deno
             pkgs.fish
