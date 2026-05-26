@@ -22,6 +22,7 @@
             pkgs.go-task
             pkgs.lazygit
             pkgs.neovim
+            pkgs.nodejs_24
             pkgs.tmux
             pkgs.zip
           ];
