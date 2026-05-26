@@ -5,18 +5,8 @@ tasks:
   setup:
     desc: '環境をセットアップする'
     cmds:
-      - task: setup:git_config
       - task: setup:dotfiles
       - task: setup:fisher
-
-  setup:git_config:
-    desc: 'git config を設定する'
-    cmds:
-      - git config --global user.email "jiroron666@gmail.com"
-      - git config --global user.name "jiro4989"
-    status:
-      - git config user.email
-      - git config user.name
 
   setup:dotfiles:
     desc: 'dotfiles をセットアップする'
