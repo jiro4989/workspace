@@ -2,6 +2,11 @@
 version: '3'
 
 tasks:
+  setup:
+    desc: '環境をセットアップする'
+    cmds:
+      - task: setup:git_config
+
   setup:git_config:
     desc: 'git config を設定する'
     cmds:
