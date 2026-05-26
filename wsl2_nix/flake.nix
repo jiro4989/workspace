@@ -17,12 +17,16 @@
         devShells.default = pkgs.mkShell {
           buildInputs = [
             pkgs.bash-language-server
+            pkgs.deno
             pkgs.fish
+            pkgs.fzf
             pkgs.ghq
             pkgs.git
+            pkgs.go
             pkgs.go-task
             pkgs.lazygit
             pkgs.neovim
+            pkgs.nim
             pkgs.nodejs_24
             pkgs.tmux
             pkgs.zip
