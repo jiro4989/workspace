@@ -16,9 +16,14 @@
       {
         devShells.default = pkgs.mkShell {
           buildInputs = [
+            pkgs.fish
+            pkgs.ghq
             pkgs.git
             pkgs.go-task
             pkgs.lazygit
+            pkgs.neovim
+            pkgs.tmux
+            pkgs.zip
           ];
 
           shellHook = ''
