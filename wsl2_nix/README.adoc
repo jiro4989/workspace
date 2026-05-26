@@ -45,6 +45,26 @@ mkdir -p workspace
 cd workspace
 git clone https://github.com/jiro4989/workspace
 cd workspace/wsl2_nix
+
+nix develop
+
+task setup
+----
+
+=== Neovim プラグインのインストール
+
+以下のコマンドで neovim を起動する。
+
+[source,shell]
+----
+nvim
+----
+
+neovim 上で以下のコマンドを実行して、プラグインをインストールする。
+
+[source,shell]
+----
+:PlugInstall
 ----
 
 == 参考
