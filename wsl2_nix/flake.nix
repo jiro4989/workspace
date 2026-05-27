@@ -32,7 +32,7 @@
           ];
 
           shellHook = ''
-            zellij
+            exec zellij
           '';
         };
       }
