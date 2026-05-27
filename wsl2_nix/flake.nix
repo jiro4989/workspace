@@ -28,6 +28,7 @@
             pkgs.nim
             pkgs.nodejs_24
             pkgs.tmux
+            pkgs.zellij
             pkgs.zip
           ];
 
