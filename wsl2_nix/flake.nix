@@ -27,13 +27,12 @@
             pkgs.neovim
             pkgs.nim
             pkgs.nodejs_24
-            pkgs.tmux
             pkgs.zellij
             pkgs.zip
           ];
 
           shellHook = ''
-            echo "Nix のシェルに接続しました"
+            zellij
           '';
         };
       }
