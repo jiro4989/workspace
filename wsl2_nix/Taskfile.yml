@@ -7,6 +7,7 @@ tasks:
     cmds:
       - task: setup:dotfiles
       - task: setup:fisher
+      - task: setup:emacs
 
   setup:dotfiles:
     desc: 'dotfiles をセットアップする'
@@ -33,3 +34,22 @@ tasks:
     desc: 'fisher をセットアップする'
     cmds:
       - fish setup_fisher.fish
+
+  setup:emacs:
+    desc: 'Doom Emacs をセットアップする'
+    cmds:
+      - task: setup:emacs_repo
+      - task: setup:emacs_config
+
+  setup:emacs_repo:
+    desc: 'Doom Emacs リポジトリを clone する'
+    cmds:
+      - git clone --depth 1 https://github.com/doomemacs/doomemacs $HOME/.config/emacs
+    status:
+      - test -d $HOME/.config/emacs
+
+  setup:emacs_config:
+    desc: 'Doom Emacs の設定をする'
+    deps: [setup:emacs_repo]
+    cmds:
+      - ~/.config/emacs/bin/doom install
