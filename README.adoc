@@ -7,7 +7,7 @@
 == 前提条件
 
 * Windows 11 Home
-* Ubuntu 24.04 on WSL2
+* Ubuntu 26.04 on WSL2
 ** https://scrapbox.io/jiro4989/WSL2%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB[WSL2のインストール]を参考にWSL2環境を構築する
 
 == WSL2 Ubuntu 環境の構築
@@ -30,51 +30,9 @@ Windows Terminal の場合、新しくディストリビューションを追加
 
 == 使い方
 
-Ubuntu 24.04 環境をWSL2で立ち上げて、以下のコマンドを実行する。
+Ubuntu 26.04 環境を WSL2 で立ち上げたら、以下の手順に従って環境を構築する。
 
-注意点として、途中1箇所だけ手動入力を求められる。
-iptables-lagecyに切り替える必要がある。
-
-[source,bash]
-----
-cd /tmp
-wget https://raw.githubusercontent.com/jiro4989/workspace/master/wsl2/setup.sh
-bash setup.sh
-exit
-----
-
-ワンライナーでやるならば以下のコマンドを実行する。
-
-[source,bash]
-----
-wget -q -O- https://raw.githubusercontent.com/jiro4989/workspace/master/wsl2/setup.sh | bash
-----
-
-一度Ubuntuを抜けて入り直す。
-
-nvim で node が必要なので node をセットアップする。
-
-[source,bash]
-----
-# バージョン確認
-nodenv install -l
-
-# グローバルインストール
-nodenv install <version>
-nodenv global <version>
-
-# node が使えることを確認
-node --version
-----
-
-最後に fisher のセットアップ
-
-[source,bash]
-----
-cd
-cd workspace/workspace/wsl2
-./setup_fisher.fish
-----
+* https://github.com/jiro4989/workspace/tree/master/wsl2_nix[wsl2_nix/README.adoc]
 
 == ディレクトリ
 
@@ -83,13 +41,35 @@ cd workspace/workspace/wsl2
 Windowsホストに必要なツール郡をインストールする。
 また、WSL2周りの運用に使うスクリプトを管理する。
 
-=== wsl2
+=== wsl2_nix
+
+Nix パッケージマネージャを中心に置いた WSL2 環境。
+2026/05/28 現在のメインな環境。
+
+昨今のサプライチェーン攻撃リスクを鑑みると、
+都度シェルスクリプトでツールをインストールしたり、
+厳密なバージョン管理をしない開発環境の構築はリスクが高い。
+
+そこで、厳密なバージョン固定が可能な Nix を試験的に採用しつつ、
+諸々使っていたツールなどを一新して開発環境を再構築したもの。
+
+Nix 公式パッケージが思っていた以上にいろんなツールを登録してくれているおかげで、
+旧 wsl2 環境構築よりも簡単に諸々ツールをインストールできるようになった。
+また、Nix に移行したことで、ツールのインストールは Nix、
+環境構築は go-task と役割の線引きをするようになり、保守性も高まった。
+
+=== wsl2 (DEPRECATED)
+
+旧開発環境。現在は使っていない。
 
 Windows 11のWSL2上で実行するスクリプトを管理する。
-初期化処理はここのスクリプトを実行する。
-2025/01/09 現在のメインな環境。
+Nix 環境に移行してからは使っていない。
 
-=== docker
+シェルスクリプトで開発環境をセットアップするオーソドックスな手法を取っている。
+setup.sh を見ればわかるが、泥臭いコードを書いているし、
+厳密なバージョン管理をしてなくて、今見ると結構良くない実装になっている。
+
+=== docker (DEPRECATED)
 
 開発環境をすべてdocker上に閉じ込めたもの。
 
