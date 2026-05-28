@@ -24,6 +24,7 @@
             pkgs.go
             pkgs.go-task
             pkgs.lazygit
+            pkgs.mmv-go
             pkgs.neovim
             pkgs.nim
             pkgs.nodejs_24
