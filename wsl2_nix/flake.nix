@@ -27,6 +27,7 @@
             pkgs.neovim
             pkgs.nim
             pkgs.nodejs_24
+            pkgs.ripgrep
             pkgs.zellij
             pkgs.zip
           ];
