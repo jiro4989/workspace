@@ -17,6 +17,7 @@
           packages = [
             pkgs.bash-language-server
             pkgs.deno
+            pkgs.emacs
             pkgs.fish
             pkgs.fzf
             pkgs.ghq
