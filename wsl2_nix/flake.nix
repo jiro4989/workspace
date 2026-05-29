@@ -25,6 +25,7 @@
             pkgs.go
             pkgs.go-task
             pkgs.gopls
+            pkgs.jq
             pkgs.lazygit
             pkgs.mmv-go
             pkgs.neovim
