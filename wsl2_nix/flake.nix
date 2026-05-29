@@ -30,6 +30,7 @@
             pkgs.neovim
             pkgs.nim
             pkgs.nodejs_24
+            pkgs.pinact
             pkgs.ripgrep
             pkgs.zellij
             pkgs.zip
