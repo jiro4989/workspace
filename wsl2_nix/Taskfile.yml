@@ -8,6 +8,7 @@ tasks:
       - task: setup:dotfiles
       - task: setup:fisher
       - task: setup:emacs
+      - task: setup:apt
 
   setup:dotfiles:
     desc: 'dotfiles をセットアップする'
@@ -53,3 +54,20 @@ tasks:
     deps: [setup:emacs_repo]
     cmds:
       - ~/.config/emacs/bin/doom install
+
+  setup:apt:
+    desc: 'apt package をインストールする'
+    cmds:
+      - task: setup:apt:update
+      - task: setup:apt:font
+
+  setup:apt:update:
+    desc: 'apt update する'
+    cmds:
+      - sudo apt update -yqq
+      - sudo apt upgrade -yqq
+
+  setup:apt:font:
+    desc: 'font をインストールする'
+    cmds:
+      - sudo apt install -y fonts-noto-cjk
