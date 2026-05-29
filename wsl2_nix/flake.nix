@@ -24,6 +24,7 @@
             pkgs.git
             pkgs.go
             pkgs.go-task
+            pkgs.gopls
             pkgs.lazygit
             pkgs.mmv-go
             pkgs.neovim
