@@ -81,6 +81,9 @@ git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
 ~/.config/emacs/bin/doom install
 ----
 
+環境によっては `$HOME/.emacs.d` ディレクトリが存在していると doom の設定ファイルが読みこまれないことがある。
+その場合は、`$HOME/.emacs.d` ディレクトリを削除すれば、doom が読みこまれるようになる。
+
 Doom 用の設定ファイルは `$HOME/.config/doom` 配下に配置されるのだが、
 前述の `task setup` で自分用の設定がシンボリックリンクされる。
 
