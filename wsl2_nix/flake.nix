@@ -20,6 +20,7 @@
             pkgs.emacs
             pkgs.fish
             pkgs.fzf
+            pkgs.gh
             pkgs.ghq
             pkgs.git
             pkgs.go
